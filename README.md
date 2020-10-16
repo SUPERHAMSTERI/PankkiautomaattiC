@@ -1,0 +1,2 @@
+# PankkiautomaattiC
+C Pankkiautomaattiharjoitus
