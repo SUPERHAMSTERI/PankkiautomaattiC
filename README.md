@@ -1,3 +1,3 @@
 # PankkiautomaattiC
 C Pankkiautomaattiharjoitus
-Kirjoitettu C:llä, tuskalla ja raskaudella.
+Kirjoitettu C:llä, turskalla ja raskaudella.
