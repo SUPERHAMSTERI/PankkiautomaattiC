@@ -3,15 +3,16 @@
 
 
 /*
-Muuttujien esittely*/
-int pinOk = 0 ;
-int userAccount = 5454580;
-int userAccountInput = 0;
-int userAccountPin = 2345;
-int userAccountPinInput = 0 ;
-int checksum = 0 ;
-int checksumInput = 0 ;
-int sessionOn = 0 ;
+Muuttujien esittely
+ */
+int pinOk = 0 ;                     // Tunnistamisen tila
+int userAccount = 5454580;          // Tarkoitus on hakea tämä myöhemmässä vaiheessa jostain muualta
+int userAccountInput = 0;           // Käyttäjän syöttämä käyttäjätunnus
+int userAccountPin = 2345;          // Tarkoitus on hakea tämä myöhemmässä vaiheessa jostain muualta
+int userAccountPinInput = 0 ;       // Käyttäjän syöttämä PIN
+int checksum = 0 ;                  // Oikean käyttäjätunnuksen ja PIN -koodin tarkiste
+int checksumInput = 0 ;             // Käyttäjän syöttämän käyttäjätunnuksen ja PIN -koodin tarkiste
+int sessionOn = 0 ;                 // Ilmaisee onko PIN syötetty ja istunto käynnissä.
 
 /*
 Main funktio ja sen esittely näissä kommenteissa*/
