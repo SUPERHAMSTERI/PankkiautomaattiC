@@ -15,14 +15,21 @@ int checksumInput = 0 ;             // Käyttäjän syöttämän käyttäjätunn
 int sessionOn = 0 ;                 // Ilmaisee onko PIN syötetty ja istunto käynnissä.
 int chooseAction = 0 ;              // Toiminnon valinta
 int loopCount = 0 ;                 // Voidaan käyttää toistojen laskemiseen.
-int withdrawalSum = 0 ;
+int withdrawalSum = 0 ;             // Nostosumma
 
 /*
  * Main funktio ja sen esittely näissä kommenteissa
  */
 int main() {
-
-    printf("Moikkis! \n"); //Tervehditään käyttäjää toistorakenteen ulkopuolella, jottei tervehdys toistuisi.
+    printf("  _    _                                                     _    _    _ \n");
+    printf(" | |  | |                                                   | |  | |  (_)\n");
+    printf(" | |__| |_   _ _ __ ___  _ __  _ __   __ _ _ __   __ _ _ __ | | _| | ___ \n");
+    printf(" |  __  | | | | '_ ` _ \\| '_ \\| '_ \\ / _` | '_ \\ / _` | '_ \\| |/ / |/ / |\n");
+    printf(" | |  | | |_| | | | | | | |_) | |_) | (_| | |_) | (_| | | | |   <|   <| |\n");
+    printf(" |_|  |_|\\__,_|_| |_| |_| .__/| .__/ \\__,_| .__/ \\__,_|_| |_|_|\\_\\_|\\_\\_|\n");
+    printf("                        | |   | |         | |                            \n");
+    printf("                        |_|   |_|         |_|                            \n\n\n");
+    printf("Moikkis! \n\n"); //Tervehditään käyttäjää toistorakenteen ulkopuolella, jottei tervehdys toistuisi.
 
     /*
      * Kysytään pin koodia niin kauan että tärppää. Tai oikeastaan viisi kertaa. Luovutetaan jos ei tuppaa onnistumaan.
@@ -31,7 +38,10 @@ int main() {
      */
 
     while (pinOk == 0) {
-
+    if (loopCount >= 1){
+        printf("\n\nNyt ei mennyt oikein!\n");
+        printf("Saat kokeilla uudelleen!\n\n");
+    }
     printf("Anna nostotunnuksesi:\n");
     scanf("%i", &userAccountInput);
     printf("Anna tunnusluku:\n");
@@ -42,10 +52,6 @@ int main() {
         if (checksumInput == checksum) {
             pinOk = 1;
             sessionOn = 1;
-        }
-            else{
-                printf("Nyt ei mennyt oikein!\n");
-                printf("Saat toki kokeilla uudellen.\n\n");
         }
 
             /*
@@ -68,10 +74,11 @@ int main() {
     /*  Alla testaamista varten pikku purkka, ettei tarvi täytellä salasanoja. Muista poistaa palautukseen!
      * sessionOn = 1; // TESTAAMISTA VARTEN OTA KOMMENTOINTI POIS
      */
+        if (sessionOn == 1){
+        printf("Moi NIMI! Miten voimme auttaa? %i\n", sessionOn);
+        }
 
-        printf("Moi NIMI! Miten voimme auttaa? \n");
-
-    while (sessionOn == 1 ){
+    if (sessionOn == 1 ){
         printf("1 Nosto" "\n");
         printf("2 Tarkista saldo" "\n");
         printf("0 Lopeta" "\n");
@@ -98,6 +105,9 @@ int main() {
 */
 
     sessionOn = 0;
-    printf("Moikkis seuraavaan kertaan! \n");
+    printf("*********************************\n");
+    printf("** Moikkis seuraavaan kertaan! **\n");
+    printf("*********************************\n");
+    scanf("%d");
     return (0);
 }
