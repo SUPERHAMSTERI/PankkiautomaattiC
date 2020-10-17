@@ -12,6 +12,7 @@ int userAccountPinInput = 0 ;       // Käyttäjän syöttämä PIN
 int checksum = 0 ;                  // Oikean käyttäjätunnuksen ja PIN -koodin tarkiste
 int checksumInput = 0 ;             // Käyttäjän syöttämän käyttäjätunnuksen ja PIN -koodin tarkiste
 int sessionOn = 0 ;                 // Ilmaisee onko PIN syötetty ja istunto käynnissä.
+int chooseAction = 0 ;              // Toiminnon valinta
 
 /*
 Main funktio ja sen esittely näissä kommenteissa*/
@@ -45,8 +46,17 @@ int main() {
      * lopettaa istunnon joko nostolla tai muuten
      */
 
+    /*  Alla testaamista varten pikku purkka, ettei tarvi täytellä salasanoja. Muista poistaa palautukseen!
+     * sessionOn = 1; // TESTAAMISTA VARTEN OTA KOMMENTOINTI POIS
+     */
+
+
     while (sessionOn == 1 ){
-        printf("Valitse toiminto \n");
+        printf("Moi! Mitä haluat tehdä? \n");
+        printf("1 Nosto" "\n");
+        printf("2 Tarkista saldo" "\n");
+        printf("0 Lopeta" "\n");
+        scanf("%d", &chooseAction);
     }
     return (0);
 }
