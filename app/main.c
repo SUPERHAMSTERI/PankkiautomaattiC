@@ -15,6 +15,7 @@ int checksumInput = 0 ;             // Käyttäjän syöttämän käyttäjätunn
 int sessionOn = 0 ;                 // Ilmaisee onko PIN syötetty ja istunto käynnissä.
 int chooseAction = 0 ;              // Toiminnon valinta
 int loopCount = 0 ;                 // Voidaan käyttää toistojen laskemiseen.
+int withdrawalSum = 0 ;
 
 /*
  * Main funktio ja sen esittely näissä kommenteissa
@@ -31,7 +32,7 @@ int main() {
 
     while (pinOk == 0) {
 
-    printf("Anna numeraalinen tunnuksesi:\n");
+    printf("Anna nostotunnuksesi:\n");
     scanf("%i", &userAccountInput);
     printf("Anna tunnusluku:\n");
     scanf("%d", &userAccountPinInput);
@@ -43,7 +44,8 @@ int main() {
             sessionOn = 1;
         }
             else{
-                printf("Nyt ei mennyt oikein!\n\n");
+                printf("Nyt ei mennyt oikein!\n");
+                printf("Saat toki kokeilla uudellen.\n\n");
         }
 
             /*
@@ -53,29 +55,49 @@ int main() {
         if (loopCount >= 4) {
             printf("Hupsistarallukkaa!\n\n");
             printf("Taidat arvailla! Mene pois ja anna seuraavan tulla kokeilemaan onneaan! \n");
-            printf("Moikkis seuraavaan kertaan! \n");
-            return (0);
+            break;
         }
 
         loopCount = loopCount + 1;
     }
 
-    /* Nyt ojelma on saanut oikean PIN koodin ja avataan uusi toistorakenne, jota toistetaan niin kauan, että käyttäjä
-     * lopettaa istunnon joko nostolla tai muuten
+    /* Nyt ojelma on saanut oikean PIN koodin ja avataan uusi toistotoistorakenne, jota toistetoistetaan niin kauan,
+     * että käyttäjä lopettaa istunnon joko tekemällä jotain tai kyllästymällä.
      */
 
     /*  Alla testaamista varten pikku purkka, ettei tarvi täytellä salasanoja. Muista poistaa palautukseen!
      * sessionOn = 1; // TESTAAMISTA VARTEN OTA KOMMENTOINTI POIS
      */
 
+        printf("Moi NIMI! Miten voimme auttaa? \n");
 
     while (sessionOn == 1 ){
-        printf("Moi NIMI! Miten voimme auttaa? \n");
         printf("1 Nosto" "\n");
         printf("2 Tarkista saldo" "\n");
         printf("0 Lopeta" "\n");
         scanf("%d", &chooseAction);
-    }
 
+        switch (chooseAction) {
+            case 0 :
+                sessionOn = 0;
+                break;
+            case 1 :
+                printf("Paljon haluat nostaa?" "\n");
+                scanf("%d", &withdrawalSum);
+                printf("Kiva! Ota luukusta %d euroa!" "\n", withdrawalSum);
+                sessionOn = 0;
+                break;
+
+            case  2:
+                printf("Olet rahaton, mene pois" "\n");
+                break;
+        }
+    }
+/*
+ * Lopetetaan kaikki nyt tähän moikkis!
+*/
+
+    sessionOn = 0;
+    printf("Moikkis seuraavaan kertaan! \n");
     return (0);
 }
