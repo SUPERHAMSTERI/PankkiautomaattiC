@@ -54,7 +54,7 @@ int main() {
 
         if (loopCount >= 4) {
             printf("Hupsistarallukkaa!\n\n");
-            printf("Taidat arvailla! Mene pois ja anna seuraavan tulla kokeilemaan onneaan! \n");
+            printf("Taidat arvailla! Mene pois ja anna seuraavan tulla kokeilemaan onneaan!\n");
             break;
         }
 
