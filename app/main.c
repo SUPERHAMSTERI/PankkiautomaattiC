@@ -20,12 +20,13 @@ int loopCount = 0 ;                // Jos tuntuu, ettei tästä tule mitään, v
  */
 int main() {
 
+    printf("Moikkis! \n"); //Tervehditään käyttäjää toistorakenteen ulkopuolella, jottei tervehdys toistuisi.
+
     /*
      * Kysytään pin koodia niin kauan että tärppää.
      * Tallennetaan Käyttäjätunnus ja PIN - Koodi omaan muuttujaan, joista lasketaan tarkiste
      * tämän jälkeen vertaillaan tarkisteita keskenään. Jos löydetään vastaavuus, lopetetaan tämä toisto toisto toisto.
      */
-    printf("Moikkis! \n"); //Tervehditään käyttäjää toistorakenteen ulkopuolella, jottei anneta aivan typerää vaikutelmaa
 
     while (pinOk == 0) {
 
