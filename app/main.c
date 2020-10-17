@@ -1,10 +1,9 @@
-/*Kirjastot*/
+//Kirjastot
 #include <stdio.h>
 
 
-/*
-Muuttujien esittely
- */
+//Muuttujien esittely
+
 int pinOk = 0 ;                     // Tunnistamisen tila
 int userAccount = 5454580;          // Tarkoitus on hakea tämä myöhemmässä vaiheessa jostain muualta
 int userAccountInput = 0;           // Käyttäjän syöttämä käyttäjätunnus
