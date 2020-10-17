@@ -3,14 +3,17 @@
 
 /*
 Muuttujien esittely*/
-
+pinOk = 0 ;
+userAccount = 0;
+userAccountPinInput = 0 ;
+checksum = 0 ;
+checksumInput = 0 ;
+sessionOn = 0 ;
 
 /*
 Main funktio ja sen esittely näissä kommenteissa*/
 int main() {
-    /*TÄHÄN
-     PALJON
-     KOODIA
-     TULOSSA ON */
+    scanf("%d", userAccount);
+    printf("Syötä käyttäjätunnus")
     return (0);
 }
