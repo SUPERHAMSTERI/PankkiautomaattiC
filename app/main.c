@@ -11,6 +11,6 @@ int main() {
     /*TÄHÄN
      PALJON
      KOODIA
-     tulossa on*/
+     TULOSSA ON */
     return (0);
 }
