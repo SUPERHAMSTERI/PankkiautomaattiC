@@ -1,6 +1,5 @@
 /*Kirjastot*/
 #include <stdio.h>
-#include <wchar.h>
 
 
 /*
@@ -19,6 +18,8 @@ Main funktio ja sen esittely näissä kommenteissa*/
 int main() {
 /*
     Kysytään pin koodia niin kauan että tärppää.
+    Tallennetaan Käyttäjätunnus ja PIN - Koodi omaan muuttujaan, joista lasketaan tarkiste
+    tämän jälkeen vertaillaan tarkisteita keskenään. Jos löydetään vastaavuus, lopetetaan tämä toisto toisto toisto.
 */
     while (pinOk == 0) {
     printf("Syötä käyttäjätunnus \n");
