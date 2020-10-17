@@ -1,19 +1,20 @@
 /*Kirjastot*/
 #include <stdio.h>
 
+
 /*
 Muuttujien esittely*/
-pinOk = 0 ;
-userAccount = 0;
-userAccountPinInput = 0 ;
-checksum = 0 ;
-checksumInput = 0 ;
-sessionOn = 0 ;
+int pinOk = 0 ;
+int userAccount = 0;
+int userAccountPinInput = 0 ;
+int checksum = 0 ;
+int checksumInput = 0 ;
+int sessionOn = 0 ;
 
 /*
 Main funktio ja sen esittely näissä kommenteissa*/
 int main() {
     scanf("%d", userAccount);
-    printf("Syötä käyttäjätunnus")
+    printf("Syötä käyttäjätunnus");
     return (0);
 }
