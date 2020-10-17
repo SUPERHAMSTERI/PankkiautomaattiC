@@ -17,11 +17,13 @@ int sessionOn = 0 ;                 // Ilmaisee onko PIN syötetty ja istunto k�
 /*
 Main funktio ja sen esittely näissä kommenteissa*/
 int main() {
-/*
-    Kysytään pin koodia niin kauan että tärppää.
-    Tallennetaan Käyttäjätunnus ja PIN - Koodi omaan muuttujaan, joista lasketaan tarkiste
-    tämän jälkeen vertaillaan tarkisteita keskenään. Jos löydetään vastaavuus, lopetetaan tämä toisto toisto toisto.
-*/
+
+    /*
+     * Kysytään pin koodia niin kauan että tärppää.
+     * Tallennetaan Käyttäjätunnus ja PIN - Koodi omaan muuttujaan, joista lasketaan tarkiste
+     * tämän jälkeen vertaillaan tarkisteita keskenään. Jos löydetään vastaavuus, lopetetaan tämä toisto toisto toisto.
+     */
+
     while (pinOk == 0) {
     printf("Syötä käyttäjätunnus \n");
     scanf("%i", &userAccountInput);
@@ -37,7 +39,12 @@ int main() {
             else{
                 printf("PIN -väärin \n");
         }
+
     }
+
+    /* Nyt ojelma on saanut oikean PIN koodin ja avataan uusi toistorakenne, jota toistetaan niin kauan, että käyttäjä
+     * lopettaa istunnon joko nostolla tai muuten
+     */
     while (sessionOn == 1 ){
         printf("Valitse toiminto \n");
     }
