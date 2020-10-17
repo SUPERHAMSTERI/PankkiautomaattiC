@@ -89,7 +89,7 @@ int main() {
                 break;
 
             case  2:
-                printf("Olet rahaton, mene pois" "\n");
+                printf("Olet rahaton, mene pois\n");
                 break;
         }
     }
