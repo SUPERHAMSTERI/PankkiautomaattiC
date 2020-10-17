@@ -1,2 +1,14 @@
+/*Kirjastot*/
+#include <stdio.h>
+
 /*
-Tähän tulee kooodia nam!*/
+Muuttujien esittely*/
+
+
+/*
+Main funktio ja sen esittely näissä kommenteissa*/
+int main() {
+    /*TÄHÄN
+    PALJON
+    KOODIA*/
+}
