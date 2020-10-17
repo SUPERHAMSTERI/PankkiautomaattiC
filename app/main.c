@@ -13,7 +13,7 @@ int checksum = 0 ;                  // Oikean käyttäjätunnuksen ja PIN -koodi
 int checksumInput = 0 ;             // Käyttäjän syöttämän käyttäjätunnuksen ja PIN -koodin tarkiste
 int sessionOn = 0 ;                 // Ilmaisee onko PIN syötetty ja istunto käynnissä.
 int chooseAction = 0 ;              // Toiminnon valinta
-int loopCount = 0 ;                // Jos tuntuu, ettei tästä tule mitään, voidaan lopettaa kaikki
+int loopCount = 0 ;                 // Voidaan käyttää toistojen laskemiseen.
 
 /*
  * Main funktio ja sen esittely näissä kommenteissa
@@ -23,7 +23,7 @@ int main() {
     printf("Moikkis! \n"); //Tervehditään käyttäjää toistorakenteen ulkopuolella, jottei tervehdys toistuisi.
 
     /*
-     * Kysytään pin koodia niin kauan että tärppää.
+     * Kysytään pin koodia niin kauan että tärppää. Tai oikeastaan viisi kertaa. Luovutetaan jos ei tuppaa onnistumaan.
      * Tallennetaan Käyttäjätunnus ja PIN - Koodi omaan muuttujaan, joista lasketaan tarkiste
      * tämän jälkeen vertaillaan tarkisteita keskenään. Jos löydetään vastaavuus, lopetetaan tämä toisto toisto toisto.
      */
