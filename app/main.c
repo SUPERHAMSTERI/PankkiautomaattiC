@@ -1,6 +1,7 @@
 //Kirjastot
 #include <stdio.h>
 
+//Omat pallerot
 
 //Muuttujien esittely
 
@@ -30,9 +31,9 @@ int main() {
 
     while (pinOk == 0) {
 
-    printf("Anna numeraalinen tunnuksesi! \n");
+    printf("Anna numeraalinen tunnuksesi:\n");
     scanf("%i", &userAccountInput);
-    printf("Anna tunnusluku \n");
+    printf("Anna tunnusluku:\n");
     scanf("%d", &userAccountPinInput);
     checksum = userAccount + userAccountPin;
     checksumInput = userAccountInput + userAccountPinInput;
@@ -50,7 +51,7 @@ int main() {
              */
 
         if (loopCount >= 4) {
-            printf("Oho!\n\n");
+            printf("Hupsistarallukkaa!\n\n");
             printf("Taidat arvailla! Mene pois ja anna seuraavan tulla kokeilemaan onneaan! \n");
             printf("Moikkis seuraavaan kertaan! \n");
             return (0);
@@ -69,7 +70,7 @@ int main() {
 
 
     while (sessionOn == 1 ){
-        printf("Moi NIMI TÄHÄN! Mitä haluat tehdä? \n");
+        printf("Moi NIMI! Miten voimme auttaa? \n");
         printf("1 Nosto" "\n");
         printf("2 Tarkista saldo" "\n");
         printf("0 Lopeta" "\n");
