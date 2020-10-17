@@ -30,7 +30,7 @@ int main() {
 
     while (pinOk == 0) {
 
-    printf("Kerrothan aivan aluksi käyttäjätunnuksesi! \n");
+    printf("Anna numeraalinen tunnuksesi! \n");
     scanf("%i", &userAccountInput);
     printf("Anna tunnusluku \n");
     scanf("%d", &userAccountPinInput);
@@ -42,7 +42,7 @@ int main() {
             sessionOn = 1;
         }
             else{
-                printf("PIN -väärin \n");
+                printf("Nyt ei mennyt oikein!\n\n");
         }
 
             /*
@@ -50,8 +50,9 @@ int main() {
              */
 
         if (loopCount >= 4) {
-            printf("Eihän tästä nyt tule mitään! \n");
-            printf("Olet laukaissut turvatoiminnon! Juokse kortteli ympäri ja yritä sitten uudelleen! \n");
+            printf("Oho!\n\n");
+            printf("Taidat arvailla! Mene pois ja anna seuraavan tulla kokeilemaan onneaan! \n");
+            printf("Moikkis seuraavaan kertaan! \n");
             return (0);
         }
 
