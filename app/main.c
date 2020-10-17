@@ -13,9 +13,11 @@ int checksum = 0 ;                  // Oikean käyttäjätunnuksen ja PIN -koodi
 int checksumInput = 0 ;             // Käyttäjän syöttämän käyttäjätunnuksen ja PIN -koodin tarkiste
 int sessionOn = 0 ;                 // Ilmaisee onko PIN syötetty ja istunto käynnissä.
 int chooseAction = 0 ;              // Toiminnon valinta
+int loopCount = 0 ;                // Jos tuntuu, ettei tästä tule mitään, voidaan lopettaa kaikki
 
 /*
-Main funktio ja sen esittely näissä kommenteissa*/
+ * Main funktio ja sen esittely näissä kommenteissa
+ */
 int main() {
 
     /*
@@ -23,9 +25,11 @@ int main() {
      * Tallennetaan Käyttäjätunnus ja PIN - Koodi omaan muuttujaan, joista lasketaan tarkiste
      * tämän jälkeen vertaillaan tarkisteita keskenään. Jos löydetään vastaavuus, lopetetaan tämä toisto toisto toisto.
      */
+    printf("Moikkis! \n"); //Tervehditään käyttäjää toistorakenteen ulkopuolella, jottei anneta aivan typerää vaikutelmaa
 
     while (pinOk == 0) {
-    printf("Syötä käyttäjätunnus \n");
+
+    printf("Kerrothan aivan aluksi käyttäjätunnuksesi! \n");
     scanf("%i", &userAccountInput);
     printf("Anna tunnusluku \n");
     scanf("%d", &userAccountPinInput);
@@ -40,6 +44,17 @@ int main() {
                 printf("PIN -väärin \n");
         }
 
+            /*
+             * Jos oiekaa syötettä ei tule, niin luovutetaan.
+             */
+
+        if (loopCount >= 4) {
+            printf("Eihän tästä nyt tule mitään! \n");
+            printf("Olet laukaissut turvatoiminnon! Juokse kortteli ympäri ja yritä sitten uudelleen! \n");
+            return (0);
+        }
+
+        loopCount = loopCount + 1;
     }
 
     /* Nyt ojelma on saanut oikean PIN koodin ja avataan uusi toistorakenne, jota toistetaan niin kauan, että käyttäjä
@@ -52,11 +67,12 @@ int main() {
 
 
     while (sessionOn == 1 ){
-        printf("Moi! Mitä haluat tehdä? \n");
+        printf("Moi NIMI TÄHÄN! Mitä haluat tehdä? \n");
         printf("1 Nosto" "\n");
         printf("2 Tarkista saldo" "\n");
         printf("0 Lopeta" "\n");
         scanf("%d", &chooseAction);
     }
+
     return (0);
 }
