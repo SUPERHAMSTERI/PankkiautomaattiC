@@ -16,6 +16,7 @@ int sessionOn = 0 ;                 // Ilmaisee onko PIN syötetty ja istunto k�
 int chooseAction = 0 ;              // Toiminnon valinta
 int loopCount = 0 ;                 // Voidaan käyttää toistojen laskemiseen.
 int withdrawalSum = 0 ;             // Nostosumma
+int abort  = 0 ;                    // Abortointi
 
 /*
  * Main funktio ja sen esittely näissä kommenteissa
@@ -108,6 +109,6 @@ int main() {
     printf("*********************************\n");
     printf("** Moikkis seuraavaan kertaan! **\n");
     printf("*********************************\n");
-    scanf("%d");
+    scanf("%i", &abort);
     return (0);
 }
