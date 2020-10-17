@@ -14,7 +14,7 @@ int sessionOn = 0 ;
 /*
 Main funktio ja sen esittely näissä kommenteissa*/
 int main() {
+    printf("Syötä käyttäjätunnus \n");
     scanf("%d", userAccount);
-    printf("Syötä käyttäjätunnus");
     return (0);
 }
