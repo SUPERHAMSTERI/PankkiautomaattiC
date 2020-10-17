@@ -44,6 +44,7 @@ int main() {
     /* Nyt ojelma on saanut oikean PIN koodin ja avataan uusi toistorakenne, jota toistetaan niin kauan, että käyttäjä
      * lopettaa istunnon joko nostolla tai muuten
      */
+
     while (sessionOn == 1 ){
         printf("Valitse toiminto \n");
     }
