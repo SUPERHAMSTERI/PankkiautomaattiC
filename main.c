@@ -91,9 +91,12 @@ int main() {
                     break;
 
                 } else {
-                    printf("Ei sinulla ole niin paljoa rahaa!", withdrawalSum);
+                    printf("Ei sinulla ole niin paljoa rahaa!\n", withdrawalSum);
                     printf("Tilisi saldo on" "\n");
                     printf("%d" "EUR\n", userAccountBalance);
+                    printf("Haluatko nostaa jonkin toisen summan?\n" "1 = JOO" "\n" "0 = EI" "\n");
+                    scanf("%d", &chooseAction);
+                    chooseDone = 1;
                     break;
                 }
 
