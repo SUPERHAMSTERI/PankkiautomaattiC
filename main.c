@@ -18,7 +18,6 @@ int chooseAction = 0 ;              // Toiminnon valinta
 int chooseDone = 0 ;                // Toiminto valittu, voidaan skipata valinta
 int loopCount = 0 ;                 // Voidaan käyttää toistojen laskemiseen.
 int withdrawalSum = 0 ;             // Nostosumma
-int abort  = 0 ;                    // Abortointi
 
 /*
  * Main funktio ja sen esittely näissä kommenteissa
