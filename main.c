@@ -15,6 +15,7 @@ int checksum = 0 ;                  // Oikean käyttäjätunnuksen ja PIN -koodi
 int checksumInput = 0 ;             // Käyttäjän syöttämän käyttäjätunnuksen ja PIN -koodin tarkiste
 int sessionOn = 0 ;                 // Ilmaisee onko PIN syötetty ja istunto käynnissä.
 int chooseAction = 0 ;              // Toiminnon valinta
+int chooseDone = 0 ;                // Toiminto valittu, voidaan skipata valinta
 int loopCount = 0 ;                 // Voidaan käyttää toistojen laskemiseen.
 int withdrawalSum = 0 ;             // Nostosumma
 int abort  = 0 ;                    // Abortointi
@@ -23,7 +24,7 @@ int abort  = 0 ;                    // Abortointi
  * Main funktio ja sen esittely näissä kommenteissa
  */
 int main() {
-    printf("Moikkis! \n\n"); //Tervehditään käyttäjää toistorakenteen ulkopuolella, jottei tervehdys toistuisi.
+    printf("\n\nMoikkis!\n\n");//Tervehditään käyttäjää toistorakenteen ulkopuolella, jottei tervehdys toistuisi.
 
     /*
      * Kysytään pin koodia niin kauan että tärppää. Tai oikeastaan viisi kertaa. Luovutetaan jos ei tuppaa onnistumaan.
@@ -65,18 +66,17 @@ int main() {
      * että käyttäjä lopettaa istunnon joko tekemällä jotain tai kyllästymällä.
      */
 
-    /*  Alla testaamista varten pikku purkka, ettei tarvi täytellä salasanoja. Muista poistaa palautukseen!
-     * sessionOn = 1; // TESTAAMISTA VARTEN OTA KOMMENTOINTI POIS
-     */
         if (sessionOn == 1){
         printf("Moi NIMI! Miten voimme auttaa?\n", sessionOn);
         }
 
-    while (sessionOn == 1 ){
+    while (sessionOn == 1){
+        if (chooseDone == 0){
         printf("1 Nosto" "\n");
         printf("2 Tarkista saldo" "\n");
         printf("0 Lopeta" "\n");
         scanf("%d", &chooseAction);
+        }
 
         switch (chooseAction) {
             case 0 :
@@ -100,7 +100,12 @@ int main() {
 
             case  2:
                 printf("Tilisi saldo on" "\n");
-                printf("%d" "EUR\n", userAccountBalance);
+                printf("%d" "EUR\n\n", userAccountBalance);
+                printf("Haluatko nostaa rahaa?" "\n");
+                printf("1 = JOO" "\n");
+                printf("0 = EI" "\n");
+                scanf("%d", &chooseAction);
+                chooseDone = 1;
                 break;
         }
     }
