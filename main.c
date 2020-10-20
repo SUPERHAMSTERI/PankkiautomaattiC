@@ -18,6 +18,7 @@ int chooseAction = 0 ;              // Toiminnon valinta
 int chooseDone = 0 ;                // Toiminto valittu, voidaan skipata valinta
 int loopCount = 0 ;                 // Voidaan käyttää toistojen laskemiseen.
 int withdrawalSum = 0 ;             // Nostosumma
+char something = 0 ;                // Vain jotain
 
 /*
  * Main funktio ja sen esittely näissä kommenteissa
@@ -82,7 +83,7 @@ int main() {
                 sessionOn = 0;
                 break;
             case 1 :
-                printf("Paljon haluat nostaa?" "\n");
+                printf("\nPaljon haluat nostaa?" "\n");
                 scanf("%d", &withdrawalSum);
                 if(withdrawalSum <= userAccountBalance) {
                     printf("Kiva! Ota luukusta %d euroa!" "\n", withdrawalSum);
@@ -91,7 +92,7 @@ int main() {
                     break;
 
                 } else {
-                    printf("Ei sinulla ole niin paljoa rahaa!\n", withdrawalSum);
+                    printf("\nEi sinulla ole niin paljoa rahaa!\n", withdrawalSum);
                     printf("Tilisi saldo on" "\n");
                     printf("%d" "EUR\n", userAccountBalance);
                     printf("Haluatko nostaa jonkin toisen summan?\n" "1 = JOO" "\n" "0 = EI" "\n");
@@ -101,9 +102,9 @@ int main() {
                 }
 
             case  2:
-                printf("Tilisi saldo on" "\n");
+                printf("\nTilisi saldo on" "\n");
                 printf("%d" "EUR\n\n", userAccountBalance);
-                printf("Haluatko nostaa rahaa?" "\n");
+                printf("\nHaluatko nostaa rahaa?" "\n");
                 printf("1 = JOO" "\n");
                 printf("0 = EI" "\n");
                 scanf("%d", &chooseAction);
@@ -119,5 +120,6 @@ int main() {
     printf("\n*********************************\n");
     printf("** Moikkis seuraavaan kertaan! **\n");
     printf("*********************************\n");
+    scanf("%d", &something);                            //Odotetaan jotain syötettä ennen lopetusta, ihan vain esimerkin vuoksi
     return (0);
 }
