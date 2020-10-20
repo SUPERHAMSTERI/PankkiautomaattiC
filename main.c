@@ -114,9 +114,8 @@ int main() {
 */
 
     sessionOn = 0;
-    printf("*********************************\n");
+    printf("\n*********************************\n");
     printf("** Moikkis seuraavaan kertaan! **\n");
     printf("*********************************\n");
-    scanf("%i", &abort);
     return (0);
 }
