@@ -15,7 +15,7 @@ int checksum = 0 ;                  // Oikean käyttäjätunnuksen ja PIN -koodi
 int checksumInput = 0 ;             // Käyttäjän syöttämän käyttäjätunnuksen ja PIN -koodin tarkiste
 int sessionOn = 0 ;                 // Ilmaisee onko PIN syötetty ja istunto käynnissä.
 int chooseAction = 0 ;              // Toiminnon valinta
-int chooseDone = 0 ;                // Toiminto valittu, voidaan skipata valinta
+int withdrawalFailed = 0 ;          // Toiminto valittu, voidaan skipata valinta
 int loopCount = 0 ;                 // Voidaan käyttää toistojen laskemiseen.
 int withdrawalSum = 0 ;             // Nostosumma
 char something = 0 ;                // Vain jotain
@@ -71,7 +71,7 @@ int main() {
         }
 
     while (sessionOn == 1){
-        if (chooseDone == 0){
+        if (withdrawalFailed == 0){
         printf("1 Nosto" "\n");
         printf("2 Tarkista saldo" "\n");
         printf("0 Lopeta" "\n");
@@ -93,22 +93,20 @@ int main() {
 
                 } else {
                     printf("\nEi sinulla ole niin paljoa rahaa!\n", withdrawalSum);
-                    printf("Tilisi saldo on" "\n");
-                    printf("%d" "EUR\n", userAccountBalance);
-                    printf("Haluatko nostaa jonkin toisen summan?\n" "1 = JOO" "\n" "0 = EI" "\n");
-                    scanf("%d", &chooseAction);
-                    chooseDone = 1;
+                    withdrawalFailed = 1;
+                    chooseAction = 2;
                     break;
                 }
 
             case  2:
                 printf("\nTilisi saldo on" "\n");
                 printf("%d" "EUR\n\n", userAccountBalance);
-                printf("\nHaluatko nostaa rahaa?" "\n");
-                printf("1 = JOO" "\n");
-                printf("0 = EI" "\n");
+                if (withdrawalFailed == 1){
+                    printf("Haluatko nostaa jonkin toisen summan?\n" "1 = JOO" "\n" "0 = EI" "\n");
+                } else {
+                    printf("\nHaluatko nostaa rahaa?" "1 = JOO" "\n" "0 = EI" "\n");
+                }
                 scanf("%d", &chooseAction);
-                chooseDone = 1;
                 break;
         }
     }
