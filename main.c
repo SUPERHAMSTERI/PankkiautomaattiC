@@ -6,9 +6,10 @@
 //Muuttujien esittely
 
 int pinOk = 0 ;                     // Tunnistamisen tila
-int userAccount = 5454580;          // Tarkoitus on hakea tämä myöhemmässä vaiheessa jostain muualta
+int userAccount = 5454580;          // Tarkoitus on hakea tämä myöhemmässä vaiheessa jostain muualta, protossa nyt näin
+int userAccountPin = 2345;          // Tarkoitus on hakea tämä myöhemmässä vaiheessa jostain muualta, protossa nyt näin
+int userAccountBalance = 100 ;      // Tarkoitus on hakea tämä myöhemmässä vaiheessa jostain muualta, protossa nyt näin
 int userAccountInput = 0;           // Käyttäjän syöttämä käyttäjätunnus
-int userAccountPin = 2345;          // Tarkoitus on hakea tämä myöhemmässä vaiheessa jostain muualta
 int userAccountPinInput = 0 ;       // Käyttäjän syöttämä PIN
 int checksum = 0 ;                  // Oikean käyttäjätunnuksen ja PIN -koodin tarkiste
 int checksumInput = 0 ;             // Käyttäjän syöttämän käyttäjätunnuksen ja PIN -koodin tarkiste
@@ -22,14 +23,6 @@ int abort  = 0 ;                    // Abortointi
  * Main funktio ja sen esittely näissä kommenteissa
  */
 int main() {
-    printf("  _    _                                                     _    _    _ \n");
-    printf(" | |  | |                                                   | |  | |  (_)\n");
-    printf(" | |__| |_   _ _ __ ___  _ __  _ __   __ _ _ __   __ _ _ __ | | _| | ___ \n");
-    printf(" |  __  | | | | '_ ` _ \\| '_ \\| '_ \\ / _` | '_ \\ / _` | '_ \\| |/ / |/ / |\n");
-    printf(" | |  | | |_| | | | | | | |_) | |_) | (_| | |_) | (_| | | | |   <|   <| |\n");
-    printf(" |_|  |_|\\__,_|_| |_| |_| .__/| .__/ \\__,_| .__/ \\__,_|_| |_|_|\\_\\_|\\_\\_|\n");
-    printf("                        | |   | |         | |                            \n");
-    printf("                        |_|   |_|         |_|                            \n\n\n");
     printf("Moikkis! \n\n"); //Tervehditään käyttäjää toistorakenteen ulkopuolella, jottei tervehdys toistuisi.
 
     /*
@@ -76,10 +69,10 @@ int main() {
      * sessionOn = 1; // TESTAAMISTA VARTEN OTA KOMMENTOINTI POIS
      */
         if (sessionOn == 1){
-        printf("Moi NIMI! Miten voimme auttaa? %i\n", sessionOn);
+        printf("Moi NIMI! Miten voimme auttaa?\n", sessionOn);
         }
 
-    if (sessionOn == 1 ){
+    while (sessionOn == 1 ){
         printf("1 Nosto" "\n");
         printf("2 Tarkista saldo" "\n");
         printf("0 Lopeta" "\n");
@@ -92,12 +85,22 @@ int main() {
             case 1 :
                 printf("Paljon haluat nostaa?" "\n");
                 scanf("%d", &withdrawalSum);
-                printf("Kiva! Ota luukusta %d euroa!" "\n", withdrawalSum);
-                sessionOn = 0;
-                break;
+                if(withdrawalSum <= userAccountBalance) {
+                    printf("Kiva! Ota luukusta %d euroa!" "\n", withdrawalSum);
+                    sessionOn = 0;
+                    userAccountBalance = userAccountBalance - withdrawalSum;
+                    break;
+
+                } else {
+                    printf("Ei sinulla ole niin paljoa rahaa!", withdrawalSum);
+                    printf("Tilisi saldo on" "\n");
+                    printf("%d" "EUR\n", userAccountBalance);
+                    break;
+                }
 
             case  2:
-                printf("Olet rahaton, mene pois\n");
+                printf("Tilisi saldo on" "\n");
+                printf("%d" "EUR\n", userAccountBalance);
                 break;
         }
     }
