@@ -3,6 +3,7 @@
 
 //Omat pallerot
 int pinInput();
+
 //Muuttujien esittely
 
 int pinOk = 0 ;                     // Tunnistamisen tila
@@ -23,17 +24,17 @@ int withdrawalSum = 0 ;             // Nostosumma
 char anyKey = 0 ;                   // Juuppismoikkis
 
 /*
- * Main funktio ja sen esittely näissä kommenteissa
+ * Main funktio ja sen esittely näissä kommenteissa. Tulossa
  */
+
 int main() {
-    printf("\n\nMoikkis!\n\n");//Tervehditään käyttäjää toistorakenteen ulkopuolella, jottei tervehdys toistuisi.
+    printf("\n\nMoikkis!\n\n");
 
 
     sessionOn = pinInput();
 
-    /* Nyt ojelma on saanut oikean PIN koodin ja avataan uusi toistotoistorakenne, jota toistetoistetaan niin kauan,
+    /* Nyt ohjelma on saanut oikean PIN koodin ja avataan uusi toistotoistorakenne, jota toistetoistetaan niin kauan,
      * että käyttäjä lopettaa istunnon joko tekemällä jotain tai kyllästymällä.
-     *
      */
 
         if (sessionOn == 1){
@@ -53,6 +54,7 @@ int main() {
             case 0 :
                 sessionOn = 0;
                 break;
+
             case 1 :
                 printf("\nPaljon haluat nostaa?" "\n");
                 scanf("%d", &withdrawalSum);
@@ -82,6 +84,7 @@ int main() {
                 break;
         }
     }
+
 /*
  * Lopetetaan nyt tähän moikkis!
 */
@@ -108,10 +111,12 @@ int pinInput() {
          */
 
         while (pinOk == 0) {
+
             if (loopCount >= 1){
                 printf("\n\nNyt ei mennyt oikein!\n");
                 printf("Saat kokeilla uudelleen!\n\n");
             }
+
             printf("Anna nostotunnuksesi:\n");
             scanf("%i", &userAccountInput);
             printf("Anna tunnusluku:\n");
@@ -135,6 +140,9 @@ int pinInput() {
                 printf("Taidat arvailla! Mene pois ja anna seuraavan tulla kokeilemaan onneaan!\n");
                 return(0);
             }
+
         }
+
     return (0);
+
 }
