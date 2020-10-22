@@ -8,11 +8,11 @@ int pinInput();
 int pinOk = 0 ;                     // Tunnistamisen tila
 int userAccount = 1 ;
 int userAccountPin = 1 ;
-//int userAccount = 5454580;          // Tarkoitus on hakea tämä myöhemmässä vaiheessa jostain muualta, protossa nyt näin
-//int userAccountPin = 2345;          // Tarkoitus on hakea tämä myöhemmässä vaiheessa jostain muualta, protossa nyt näin
-int userAccountBalance = 100 ;      // Tarkoitus on hakea tämä myöhemmässä vaiheessa jostain muualta, protossa nyt näin
-int userAccountInput = 0;           // Käyttäjän syöttämä käyttäjätunnus
-int userAccountPinInput = 0 ;       // Käyttäjän syöttämä PIN
+//int userAccount = 5454580;        // Tarkoitus on hakea tämä myöhemmässä vaiheessa jostain muualta, nyt näin
+//int userAccountPin = 2345;        // Tarkoitus on hakea tämä myöhemmässä vaiheessa jostain muualta, nyt näin
+int userAccountBalance = 100 ;      // Tarkoitus on hakea tämä myöhemmässä vaiheessa jostain muualta, nyt näin
+int userAccountInput = 0;
+int userAccountPinInput = 0 ;
 int checksum = 0 ;                  // Oikean käyttäjätunnuksen ja PIN -koodin tarkiste
 int checksumInput = 0 ;             // Käyttäjän syöttämän käyttäjätunnuksen ja PIN -koodin tarkiste
 int sessionOn = 0 ;                 // Ilmaisee onko PIN syötetty ja istunto käynnissä.
@@ -20,7 +20,7 @@ int chooseAction = 0 ;              // Toiminnon valinta
 int inLoop = 0 ;                    // Toiminto valittu, voidaan skipata valinta
 int loopCount = 0 ;                 // Voidaan käyttää toistojen laskemiseen.
 int withdrawalSum = 0 ;             // Nostosumma
-char something = 0 ;                // Vain jotain
+char anyKey = 0 ;
 
 /*
  * Main funktio ja sen esittely näissä kommenteissa
@@ -28,7 +28,7 @@ char something = 0 ;                // Vain jotain
 int main() {
     printf("\n\nMoikkis!\n\n");//Tervehditään käyttäjää toistorakenteen ulkopuolella, jottei tervehdys toistuisi.
 
-    pinInput();
+
     sessionOn = pinInput();
 
     /* Nyt ojelma on saanut oikean PIN koodin ja avataan uusi toistotoistorakenne, jota toistetoistetaan niin kauan,
@@ -59,7 +59,7 @@ int main() {
                     printf("Kiva! Ota luukusta %d euroa!" "\n", withdrawalSum);
                     sessionOn = 0;
                     userAccountBalance = userAccountBalance - withdrawalSum;
-                    printf("Tilisi saldo on nyt %d euroa!" "\n", userAccountBalance);
+                    printf("Tilisi saldo on nyt %d euroa!" "\nLupaan, ensi kerralla kysyn haluatko saldon ruuudulle", userAccountBalance);
                     break;
 
                 } else {
@@ -82,16 +82,20 @@ int main() {
         }
     }
 /*
- * Lopetetaan kaikki nyt tähän moikkis!
+ * Lopetetaan nyt tähän moikkis!
 */
 
     sessionOn = 0;
     printf("\n*********************************\n");
     printf("** Moikkis seuraavaan kertaan! **\n");
     printf("*********************************\n");
-    scanf("%d", &something);                            //Odotetaan jotain syötettä ennen lopetusta, ihan vain esimerkin vuoksi
+    scanf("%d", &anyKey);                            //Odotetaan jotain syötettä ennen lopetusta, ihan vain esimerkin vuoksi
     return (0);
 }
+/*
+ * Funktioita
+*/
+
 
 int pinInput() {
 
@@ -122,12 +126,13 @@ int pinInput() {
              * Jos oiekaa syötettä ei tule, niin luovutetaan.
              */
 
-            if (loopCount >= 4) {
+            loopCount = loopCount + 1;
+
+            if (loopCount >= 5) {
                 printf("Hupsistarallukkaa!\n\n");
                 printf("Taidat arvailla! Mene pois ja anna seuraavan tulla kokeilemaan onneaan!\n");
-                break;
+                return(0);
             }
 
-            loopCount = loopCount + 1;
         }
 }
