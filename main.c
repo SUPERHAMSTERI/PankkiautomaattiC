@@ -90,7 +90,7 @@ int main() {
     printf("\n*********************************\n");
     printf("** Moikkis seuraavaan kertaan! **\n");
     printf("*********************************\n");
-    scanf("%d", &anyKey);                            //Odotetaan jotain syötettä ennen lopetusta, ihan vain esimerkin vuoksi
+    scanf("%c", &anyKey);                            //Odotetaan jotain syötettä ennen lopetusta, ihan vain esimerkin vuoksi
     return (0);
 }
 
@@ -135,6 +135,6 @@ int pinInput() {
                 printf("Taidat arvailla! Mene pois ja anna seuraavan tulla kokeilemaan onneaan!\n");
                 return(0);
             }
-
         }
+    return (0);
 }
