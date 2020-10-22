@@ -6,13 +6,13 @@ int pinInput();
 //Muuttujien esittely
 
 int pinOk = 0 ;                     // Tunnistamisen tila
-int userAccount = 1 ;
-int userAccountPin = 1 ;
+int userAccount = 1 ;               // Mennään näillä testaamisen helpottamiseksi
+int userAccountPin = 1 ;            // Mennään näillä testaamisen helpottamiseksi
 //int userAccount = 5454580;        // Tarkoitus on hakea tämä myöhemmässä vaiheessa jostain muualta, nyt näin
 //int userAccountPin = 2345;        // Tarkoitus on hakea tämä myöhemmässä vaiheessa jostain muualta, nyt näin
 int userAccountBalance = 100 ;      // Tarkoitus on hakea tämä myöhemmässä vaiheessa jostain muualta, nyt näin
-int userAccountInput = 0;
-int userAccountPinInput = 0 ;
+int userAccountInput = 0;           // Juuri sitä
+int userAccountPinInput = 0 ;       // Muuttujan nimi kertoo kaiken, mutta kommentoidaan nyt tätäkin
 int checksum = 0 ;                  // Oikean käyttäjätunnuksen ja PIN -koodin tarkiste
 int checksumInput = 0 ;             // Käyttäjän syöttämän käyttäjätunnuksen ja PIN -koodin tarkiste
 int sessionOn = 0 ;                 // Ilmaisee onko PIN syötetty ja istunto käynnissä.
@@ -20,7 +20,7 @@ int chooseAction = 0 ;              // Toiminnon valinta
 int inLoop = 0 ;                    // Toiminto valittu, voidaan skipata valinta
 int loopCount = 0 ;                 // Voidaan käyttää toistojen laskemiseen.
 int withdrawalSum = 0 ;             // Nostosumma
-char anyKey = 0 ;
+char anyKey = 0 ;                   // Juuppismoikkis
 
 /*
  * Main funktio ja sen esittely näissä kommenteissa
@@ -33,6 +33,7 @@ int main() {
 
     /* Nyt ojelma on saanut oikean PIN koodin ja avataan uusi toistotoistorakenne, jota toistetoistetaan niin kauan,
      * että käyttäjä lopettaa istunnon joko tekemällä jotain tai kyllästymällä.
+     *
      */
 
         if (sessionOn == 1){
@@ -92,8 +93,9 @@ int main() {
     scanf("%d", &anyKey);                            //Odotetaan jotain syötettä ennen lopetusta, ihan vain esimerkin vuoksi
     return (0);
 }
+
 /*
- * Funktioita
+ * Täällä lymyää funktio/t toistaiseksi.
 */
 
 
