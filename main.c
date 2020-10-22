@@ -30,7 +30,6 @@ char anyKey = 0 ;                   // Juuppismoikkis
 int main() {
     printf("\n\nMoikkis!\n\n");
 
-
     sessionOn = pinInput();
 
     /* Nyt ohjelma on saanut oikean PIN koodin ja avataan uusi toistotoistorakenne, jota toistetoistetaan niin kauan,
