@@ -3,6 +3,7 @@
 
 //Omat pallerot
 int pinInput();
+void session();
 
 //Muuttujien esittely
 
@@ -24,65 +25,17 @@ int withdrawalSum = 0 ;             // Nostosumma
 char anyKey = 0 ;                   // Juuppismoikkis
 
 /*
- * Main funktio ja sen esittely näissä kommenteissa. Tulossa
+ * Main funktio ja sen esittely näissä kommenteissa. Tulossa. Joskus.
  */
 
 int main() {
     printf("\n\nMoikkis!\n\n");
 
+    //Soitellaan pin koodin kyselijälle.
     sessionOn = pinInput();
 
-    /* Nyt ohjelma on saanut oikean PIN koodin ja avataan uusi toistotoistorakenne, jota toistetoistetaan niin kauan,
-     * että käyttäjä lopettaa istunnon joko tekemällä jotain tai kyllästymällä.
-     */
-
-        if (sessionOn == 1){
-        printf("\nMoi NIMI! Miten voimme auttaa?\n", sessionOn);
-        printf("1 Nosto" "\n");
-        printf("2 Tarkista saldo" "\n");
-        printf("0 Lopeta" "\n");
-        scanf("%d", &chooseAction);
-        }
-
-    while (sessionOn == 1){
-        if (inLoop == 0){
-
-        }
-
-        switch (chooseAction) {
-            case 0 :
-                sessionOn = 0;
-                break;
-
-            case 1 :
-                printf("\nPaljon haluat nostaa?" "\n");
-                scanf("%d", &withdrawalSum);
-                if(withdrawalSum <= userAccountBalance) {
-                    printf("Kiva! Ota luukusta %d euroa!" "\n", withdrawalSum);
-                    sessionOn = 0;
-                    userAccountBalance = userAccountBalance - withdrawalSum;
-                    printf("Tilisi saldo on nyt %d euroa!" "\nLupaan, ensi kerralla kysyn haluatko saldon ruuudulle", userAccountBalance);
-                    break;
-
-                } else {
-                    printf("\nEi sinulla ole niin paljoa rahaa!\n", withdrawalSum);
-                    inLoop = 1;
-                    chooseAction = 2;
-                    break;
-                }
-
-            case  2:
-                printf("\nTilisi saldo on" "\n");
-                printf("%d" "EUR\n\n", userAccountBalance);
-                if (inLoop == 1){
-                    printf("Haluatko nostaa jonkin toisen summan?\n" "1 = JOO" "\n" "0 = EI" "\n");
-                } else {
-                    printf("\nHaluatko nostaa rahaa?\n" "1 = JOO" "\n" "0 = EI" "\n");
-                }
-                scanf("%d", &chooseAction);
-                break;
-        }
-    }
+    //Soitellaan funktiolle, joka haalii kaikki toiminnot.
+    session();
 
 /*
  * Lopetetaan nyt tähän moikkis!
@@ -92,14 +45,13 @@ int main() {
     printf("\n*********************************\n");
     printf("** Moikkis seuraavaan kertaan! **\n");
     printf("*********************************\n");
-    scanf("%c", &anyKey);                            //Odotetaan jotain syötettä ennen lopetusta, ihan vain esimerkin vuoksi
+    scanf("%c", &anyKey);                            //Odotetaan jotain syötettä ennen lopetusta, jotta kaikki tulosteet ovat luettavissa.
     return (0);
 }
 
 /*
- * Täällä lymyää funktio/t toistaiseksi.
+ * Seuraavaksi: funktioita.
 */
-
 
 int pinInput() {
 
@@ -144,4 +96,59 @@ int pinInput() {
 
     return (0);
 
+}
+
+void session (void) {
+
+    /* Nyt ohjelma on saanut oikean PIN koodin ja avataan uusi toistotoistorakenne, jota toistetoistetaan niin kauan,
+     * että käyttäjä lopettaa istunnon joko tekemällä jotain tai kyllästymällä. Tämä kaikki tapahtuu session() -funktiossa.
+     */
+
+    if (sessionOn == 1){
+        printf("\nMoi NIMI! Miten voimme auttaa?\n", sessionOn);
+        printf("1 Nosto" "\n");
+        printf("2 Tarkista saldo" "\n");
+        printf("0 Lopeta" "\n");
+        scanf("%d", &chooseAction);
+    }
+
+    while (sessionOn == 1){
+        if (inLoop == 0){
+
+        }
+
+        switch (chooseAction) {
+            case 0 :
+                sessionOn = 0;
+                break;
+
+            case 1 :
+                printf("\nPaljon haluat nostaa?" "\n");
+                scanf("%d", &withdrawalSum);
+                if(withdrawalSum <= userAccountBalance) {
+                    printf("Kiva! Ota luukusta %d euroa!" "\n", withdrawalSum);
+                    sessionOn = 0;
+                    userAccountBalance = userAccountBalance - withdrawalSum;
+                    printf("Tilisi saldo on nyt %d euroa!" "\nLupaan, ensi kerralla kysyn haluatko saldon ruuudulle", userAccountBalance);
+                    break;
+
+                } else {
+                    printf("\nEi sinulla ole niin paljoa rahaa!\n", withdrawalSum);
+                    inLoop = 1;
+                    chooseAction = 2;
+                    break;
+                }
+
+            case  2:
+                printf("\nTilisi saldo on" "\n");
+                printf("%d" "EUR\n\n", userAccountBalance);
+                if (inLoop == 1){
+                    printf("Haluatko nostaa jonkin toisen summan?\n" "1 = JOO" "\n" "0 = EI" "\n");
+                } else {
+                    printf("\nHaluatko nostaa rahaa?\n" "1 = JOO" "\n" "0 = EI" "\n");
+                }
+                scanf("%d", &chooseAction);
+                break;
+        }
+    }
 }
