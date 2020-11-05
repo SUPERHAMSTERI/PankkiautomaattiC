@@ -1,7 +1,9 @@
-//Kirjastot
+//Vakiokirjastot
+
 #include <stdio.h>
 
-//Omat pallerot
+//Omat funktiot
+
 int pinInput();
 void session();
 
@@ -25,16 +27,20 @@ int withdrawalSum = 0 ;             // Nostosumma
 char anyKey = 0 ;                   // Juuppismoikkis
 
 /*
- * Main funktio ja sen esittely näissä kommenteissa. Tulossa. Joskus.
+ * Main funktio ja sen toiminnan esittely näissä kommenteissa. Tulossa. Ensi jaksossa.
  */
 
-int main() {
-    printf("\n\nMoikkis!\n\n");
 
-    //Soitellaan pin koodin kyselijälle.
+int main() {
+    printf("\nMoikkis!\n\n");
+
+/* Soitellaan pin koodin kyselijälle.
+ * Soitellaan funktiolle, joka haalii kaikki toiminnot. Tämä funktio hajoitetaan tulevissa versioissa, mutta nyt näin
+ */
+
+
     sessionOn = pinInput();
 
-    //Soitellaan funktiolle, joka haalii kaikki toiminnot.
     session();
 
 /*
@@ -48,6 +54,7 @@ int main() {
     scanf("%c", &anyKey);                            //Odotetaan jotain syötettä ennen lopetusta, jotta kaikki tulosteet ovat luettavissa.
     return (0);
 }
+
 
 /*
  * Seuraavaksi: funktioita.
