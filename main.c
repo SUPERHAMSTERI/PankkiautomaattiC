@@ -1,7 +1,9 @@
-//Kirjastot
+//Vakiokirjastot
+
 #include <stdio.h>
 
-//Omat pallerot
+//Omat funktiot
+
 int pinInput();
 void session();
 
@@ -23,18 +25,23 @@ int inLoop = 0 ;                    // Toiminto valittu, voidaan skipata valinta
 int loopCount = 0 ;                 // Voidaan käyttää toistojen laskemiseen.
 int withdrawalSum = 0 ;             // Nostosumma
 char anyKey = 0 ;                   // Juuppismoikkis
+int chooseOK = 0 ;
 
 /*
- * Main funktio ja sen esittely näissä kommenteissa. Tulossa. Joskus.
+ * Main funktio ja sen toiminnan esittely näissä kommenteissa. Tulossa. Ensi jaksossa.
  */
 
+
 int main() {
-    printf("\n\nMoikkis!\n\n");
 
-    //Soitellaan pin koodin kyselijälle.
+    printf("\nMoikkis!\n\n");
+
+/* Soitellaan pin koodin kyselijälle.
+ * Sitten soitellaan funktiolle, joka haalii kaikki toiminnot. Tämä funktio hajoitetaan tulevissa versioissa, mutta nyt näin
+ */
+
+
     sessionOn = pinInput();
-
-    //Soitellaan funktiolle, joka haalii kaikki toiminnot.
     session();
 
 /*
@@ -48,6 +55,10 @@ int main() {
     scanf("%c", &anyKey);                            //Odotetaan jotain syötettä ennen lopetusta, jotta kaikki tulosteet ovat luettavissa.
     return (0);
 }
+
+
+
+
 
 /*
  * Seuraavaksi: funktioita.
@@ -102,20 +113,29 @@ void session (void) {
 
     /* Nyt ohjelma on saanut oikean PIN koodin ja avataan uusi toistotoistorakenne, jota toistetoistetaan niin kauan,
      * että käyttäjä lopettaa istunnon joko tekemällä jotain tai kyllästymällä. Tämä kaikki tapahtuu session() -funktiossa.
+     * Session funktio olisi tarkoitus hajoittaa järkeviin osiin, mutta vielä ohjelma on niin yksinkertainen, että mennään
+     * näin
      */
 
-    if (sessionOn == 1){
+    while (sessionOn == 1 && chooseOK ==  0){
         printf("\nMoi NIMI! Miten voimme auttaa?\n", sessionOn);
         printf("1 Nosto" "\n");
         printf("2 Tarkista saldo" "\n");
         printf("0 Lopeta" "\n");
         scanf("%d", &chooseAction);
+
+        if(chooseAction == 0 || chooseAction == 1 || chooseAction == 2){
+            chooseOK = 1;
+        } else {
+            printf("Valitse kunnolla!"  "\n");
+        }
+
     }
 
     while (sessionOn == 1){
-        if (inLoop == 0){
+        /*if (inLoop == 0){
 
-        }
+        }*/
 
         switch (chooseAction) {
             case 0 :
@@ -149,6 +169,9 @@ void session (void) {
                 }
                 scanf("%d", &chooseAction);
                 break;
+
+            default:
+                inLoop = 1;
         }
     }
 }

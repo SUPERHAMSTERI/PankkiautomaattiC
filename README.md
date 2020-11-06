@@ -5,4 +5,8 @@
 C Pankkiautomaattiharjoitus
 Kirjoitettu C:llä, turskalla ja raskaudella.
 
+Tämä tehtävä on iänkaikkisesti ollut C -kurssilla harjoitustyönä ja näin tulee aina olemaan.
+
+Mikään malliesimerkki tämä ei ole, mutta yksi ratkaisu kuitenkin.
+
 Lisää infoa tarjoaa LUEMINUT.txt
