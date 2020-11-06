@@ -118,7 +118,7 @@ void session (void) {
      */
 
     while (sessionOn == 1 && chooseOK ==  0){
-        printf("\nMoi NIMI! Miten voimme auttaa?\n", sessionOn);
+        printf("\nMoi NIMI! Miten voimme auttaa?\n");
         printf("1 Nosto" "\n");
         printf("2 Tarkista saldo" "\n");
         printf("0 Lopeta" "\n");
@@ -153,7 +153,7 @@ void session (void) {
                     break;
 
                 } else {
-                    printf("\nEi sinulla ole niin paljoa rahaa!\n", withdrawalSum);
+                    printf("\nEi sinulla ole niin paljoa rahaa!\n");
                     inLoop = 1;
                     chooseAction = 2;
                     break;
