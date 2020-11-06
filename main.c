@@ -167,6 +167,7 @@ void session (void) {
                 } else {
                     printf("\nHaluatko nostaa rahaa?\n" "1 = JOO" "\n" "0 = EI" "\n");
                 }
+
                 scanf("%d", &chooseAction);
                 break;
 
