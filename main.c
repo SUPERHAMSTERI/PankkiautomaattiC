@@ -27,12 +27,10 @@ int inLoop = 0 ;                    // Toiminto valittu, voidaan skipata valinta
 int loopCount = 0 ;                 // Voidaan käyttää toistojen laskemiseen.
 int withdrawalSum = 0 ;             // Nostosumma
 char anyKey = 0 ;                   // Juuppismoikkis
-int chooseOK = 0 ;
-int withdrawalSum50 = 0 ;
-int withdrawalSum20 = 0 ;
-int banknote20 = 0;
-int banknote50 = 50;
-int showBalance = 0;
+int chooseOK = 0 ;                  // Käytetään virheellisten valintojen suodattamiseen
+int banknote20 = 0;                 // 20€ setelien määrä
+int banknote50 = 50;                // 50€ setelien määrä
+int showBalance = 0;                // Käsketään balanssifunktiota suosiolla näyttämään saldo ilman kyselyjä
 
 /*
  * Main funktio ja sen toiminnan esittely näissä kommenteissa. Tulossa. Ensi jaksossa.
@@ -189,8 +187,7 @@ int banknote (){
     }
 
     if(withdrawalSum % 20 == 0  && sessionOn != 0){
-        withdrawalSum20 = withdrawalSum / 20;
-        banknote20 = withdrawalSum20;
+        banknote20 = withdrawalSum / 20;
         printf("Saat %d kappaletta 20 euron paperirahaa\n", banknote20);
         userAccountBalance = userAccountBalance - withdrawalSum;
         balance();
@@ -198,8 +195,7 @@ int banknote (){
     }
 
     if(withdrawalSum % 50 == 0 && sessionOn != 0){
-        withdrawalSum50 = withdrawalSum / 50;
-        banknote50 = withdrawalSum50;
+        banknote50 = withdrawalSum / 50;
         userAccountBalance = userAccountBalance - withdrawalSum;
         printf("Saat %d kappaletta 50 euron paperirahaa\n", banknote50);
         balance();
