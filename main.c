@@ -6,6 +6,7 @@
 
 int pinInput();
 void session();
+int balance();
 int banknote();
 
 //Muuttujien esittely
@@ -31,6 +32,7 @@ int withdrawalSum50 = 0 ;
 int withdrawalSum20 = 0 ;
 int banknote20 = 0;
 int banknote50 = 50;
+int showBalance = 0;
 
 /*
  * Main funktio ja sen toiminnan esittely näissä kommenteissa. Tulossa. Ensi jaksossa.
@@ -162,8 +164,8 @@ void session (void) {
                 }
 
             case  2:
-                printf("\nTilisi saldo on" "\n");
-                printf("%d" "EUR\n\n", userAccountBalance);
+                showBalance = 1;
+                balance();
                 if (inLoop == 1){
                     printf("Haluatko nostaa jonkin toisen summan?\n" "1 = JOO" "\n" "0 = EI" "\n");
                 } else {
@@ -186,31 +188,44 @@ int banknote (){
         printf("Ei noin minimaalisia summia voi nostaakkaan! Pienin mahdollinen nostosumma on 20 EUR\n");
     }
 
-    if(withdrawalSum % 20 == 0){
+    if(withdrawalSum % 20 == 0  && sessionOn != 0){
         withdrawalSum20 = withdrawalSum / 20;
         banknote20 = withdrawalSum20;
         printf("Saat %d kappaletta 20 euron paperirahaa\n", banknote20);
         userAccountBalance = userAccountBalance - withdrawalSum;
-        printf("Tilisi saldo on nyt %d euroa!" "\nLupaan, ensi kerralla kysyn haluatko saldon ruuudulle", userAccountBalance);
+        balance();
         sessionOn = 0;
     }
 
-    if(withdrawalSum % 50 == 0){
+    if(withdrawalSum % 50 == 0 && sessionOn != 0){
         withdrawalSum50 = withdrawalSum / 50;
         banknote50 = withdrawalSum50;
         userAccountBalance = userAccountBalance - withdrawalSum;
         printf("Saat %d kappaletta 50 euron paperirahaa\n", banknote50);
-        printf("Tilisi saldo on nyt %d euroa!" "\nLupaan, ensi kerralla kysyn haluatko saldon ruuudulle", userAccountBalance);
+        balance();
         sessionOn = 0;
     }
 
-    if(withdrawalSum % 10 != 0 && withdrawalSum > 20){
+    if(withdrawalSum % 10 != 0 && withdrawalSum > 20 && sessionOn != 0){
         printf("Me emme ropoja jakele!\n");
     }
 
-    if (withdrawalSum > 20 && withdrawalSum % 50 != 0 && withdrawalSum % 20 != 0){
+    if (withdrawalSum > 20 && withdrawalSum % 50 != 0 && withdrawalSum % 20 != 0 && sessionOn != 0){
         printf("Mielenkiintoista.\n");
 
     }
     return (0);
+}
+
+int balance(){
+    if (showBalance == 0){
+    printf("Haluatko tulostaa saldon?\n1 TOTTAKAI \n2 EI\n");
+    scanf("%d", &showBalance);
+    }
+
+    if(showBalance == 1){
+        printf("Tilisi saldo on %d EUR.\n", userAccountBalance);
+    }
+
+    return(0);
 }
