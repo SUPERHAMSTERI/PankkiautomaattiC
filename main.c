@@ -15,7 +15,7 @@ int userAccount = 1 ;               // Mennään näillä testaamisen helpottami
 int userAccountPin = 1 ;            // Mennään näillä testaamisen helpottamiseksi
 //int userAccount = 5454580;        // Tarkoitus on hakea tämä myöhemmässä vaiheessa jostain muualta, nyt näin
 //int userAccountPin = 2345;        // Tarkoitus on hakea tämä myöhemmässä vaiheessa jostain muualta, nyt näin
-int userAccountBalance = 100 ;      // Tarkoitus on hakea tämä myöhemmässä vaiheessa jostain muualta, nyt näin
+int userAccountBalance = 200 ;      // Tarkoitus on hakea tämä myöhemmässä vaiheessa jostain muualta, nyt näin
 int userAccountInput = 0;           // Juuri sitä
 int userAccountPinInput = 0 ;       // Muuttujan nimi kertoo kaiken, mutta kommentoidaan nyt tätäkin
 int checksum = 0 ;                  // Oikean käyttäjätunnuksen ja PIN -koodin tarkiste
@@ -27,6 +27,10 @@ int loopCount = 0 ;                 // Voidaan käyttää toistojen laskemiseen.
 int withdrawalSum = 0 ;             // Nostosumma
 char anyKey = 0 ;                   // Juuppismoikkis
 int chooseOK = 0 ;
+int withdrawalSum50 = 0 ;
+int withdrawalSum20 = 0 ;
+int banknote20 = 0;
+int banknote50 = 50;
 
 /*
  * Main funktio ja sen toiminnan esittely näissä kommenteissa. Tulossa. Ensi jaksossa.
@@ -148,6 +152,7 @@ void session (void) {
                 scanf("%d", &withdrawalSum);
                 if(withdrawalSum <= userAccountBalance) {
                     printf("Kiva! Ota luukusta %d euroa!" "\n", withdrawalSum);
+                    banknote();
                     sessionOn = 0;
                     userAccountBalance = userAccountBalance - withdrawalSum;
                     printf("Tilisi saldo on nyt %d euroa!" "\nLupaan, ensi kerralla kysyn haluatko saldon ruuudulle", userAccountBalance);
@@ -178,11 +183,21 @@ void session (void) {
     }
 }
 
-int banknote ();{
+int banknote (){
     if(withdrawalSum < 20){
         printf("Ei noin minimaalisia summia voi nostaakkaan! Pienin mahdollinen nostosumma on 20 EUR");
     }
     if(withdrawalSum % 20 == 0){
-        banknote20 = wi
+        withdrawalSum20 = withdrawalSum / 20;
+        banknote20 = withdrawalSum20;
+        printf("Saat %d kappaletta 20 euron seteleitä", banknote20);
     }
+    if(withdrawalSum % 50 == 0){
+    withdrawalSum50 = withdrawalSum / 50;
+    banknote50 = withdrawalSum50;
+    }
+    if(withdrawalSum % 10 != 0){
+        printf("Me emme ropoja jakele!");
+    }
+    return (0);
 }
