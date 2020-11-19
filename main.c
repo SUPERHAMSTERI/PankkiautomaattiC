@@ -6,6 +6,7 @@
 
 int pinInput();
 void session();
+int banknote();
 
 //Muuttujien esittely
 
@@ -174,5 +175,14 @@ void session (void) {
             default:
                 inLoop = 1;
         }
+    }
+}
+
+int banknote ();{
+    if(withdrawalSum < 20){
+        printf("Ei noin minimaalisia summia voi nostaakkaan! Pienin mahdollinen nostosumma on 20 EUR");
+    }
+    if(withdrawalSum % 20 == 0){
+        banknote20 = wi
     }
 }
