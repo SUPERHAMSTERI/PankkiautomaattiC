@@ -183,6 +183,7 @@ int banknote (){
     if(withdrawalSum < 20){
         printf("Ei noin minimaalisia summia voi nostaakkaan! Pienin mahdollinen nostosumma on 20 EUR\n");
     }
+
     if(withdrawalSum % 20 == 0){
         withdrawalSum20 = withdrawalSum / 20;
         banknote20 = withdrawalSum20;
@@ -191,6 +192,7 @@ int banknote (){
         printf("Tilisi saldo on nyt %d euroa!" "\nLupaan, ensi kerralla kysyn haluatko saldon ruuudulle", userAccountBalance);
         sessionOn = 0;
     }
+
     if(withdrawalSum % 50 == 0){
         withdrawalSum50 = withdrawalSum / 50;
         banknote50 = withdrawalSum50;
@@ -199,8 +201,13 @@ int banknote (){
         printf("Tilisi saldo on nyt %d euroa!" "\nLupaan, ensi kerralla kysyn haluatko saldon ruuudulle", userAccountBalance);
         sessionOn = 0;
     }
+
     if(withdrawalSum % 10 != 0 && withdrawalSum > 20){
         printf("Me emme ropoja jakele!\n");
+    }
+
+    if (withdrawalSum > 20 && withdrawalSum % 50 != 0 && withdrawalSum % 50 != 0){
+        printf("Mielenkiintoista.\n");
     }
     return (0);
 }
