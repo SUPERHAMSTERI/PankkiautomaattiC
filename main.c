@@ -179,6 +179,8 @@ void session (void) {
     }
 }
 
+/*Tämä funktio laskelee, minkäsmoista seteliä sitä syljettäisiin ulos.*/
+
 int banknote (){
     if(withdrawalSum < 20){
         printf("Ei noin minimaalisia summia voi nostaakkaan! Pienin mahdollinen nostosumma on 20 EUR\n");
@@ -208,6 +210,7 @@ int banknote (){
 
     if (withdrawalSum > 20 && withdrawalSum % 50 != 0 && withdrawalSum % 50 != 0){
         printf("Mielenkiintoista.\n");
+
     }
     return (0);
 }
