@@ -54,7 +54,7 @@ int main() {
 */
 
     sessionOn = 0;
-    printf("\n*********************************\n");
+    printf("\n\n*********************************\n");
     printf("** Moikkis seuraavaan kertaan! **\n");
     printf("*********************************\n");
     scanf("%c", &anyKey);                            //Odotetaan jotain syötettä ennen lopetusta, jotta kaikki tulosteet ovat luettavissa.
@@ -154,7 +154,6 @@ void session (void) {
                     printf("Kiva! Ota luukusta %d euroa!" "\n", withdrawalSum);
                     banknote();
                     sessionOn = 0;
-                    userAccountBalance = userAccountBalance - withdrawalSum;
                     printf("Tilisi saldo on nyt %d euroa!" "\nLupaan, ensi kerralla kysyn haluatko saldon ruuudulle", userAccountBalance);
                     break;
 
@@ -185,19 +184,22 @@ void session (void) {
 
 int banknote (){
     if(withdrawalSum < 20){
-        printf("Ei noin minimaalisia summia voi nostaakkaan! Pienin mahdollinen nostosumma on 20 EUR");
+        printf("Ei noin minimaalisia summia voi nostaakkaan! Pienin mahdollinen nostosumma on 20 EUR\n");
     }
     if(withdrawalSum % 20 == 0){
         withdrawalSum20 = withdrawalSum / 20;
         banknote20 = withdrawalSum20;
-        printf("Saat %d kappaletta 20 euron seteleitä", banknote20);
+        printf("Saat %d kappaletta 20 euron seteleitä\n", banknote20);
+        userAccountBalance = userAccountBalance - withdrawalSum;
     }
     if(withdrawalSum % 50 == 0){
-    withdrawalSum50 = withdrawalSum / 50;
-    banknote50 = withdrawalSum50;
+        withdrawalSum50 = withdrawalSum / 50;
+        banknote50 = withdrawalSum50;
+        userAccountBalance = userAccountBalance - withdrawalSum;
+        printf("Saat %d kappaletta 50 euron seteleitä\n", banknote50);
     }
-    if(withdrawalSum % 10 != 0){
-        printf("Me emme ropoja jakele!");
+    if(withdrawalSum % 10 != 0 && withdrawalSum < 20){
+        printf("Me emme ropoja jakele!\n");
     }
     return (0);
 }
