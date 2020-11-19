@@ -208,7 +208,7 @@ int banknote (){
         printf("Me emme ropoja jakele!\n");
     }
 
-    if (withdrawalSum > 20 && withdrawalSum % 50 != 0 && withdrawalSum % 50 != 0){
+    if (withdrawalSum > 20 && withdrawalSum % 50 != 0 && withdrawalSum % 20 != 0){
         printf("Mielenkiintoista.\n");
 
     }
