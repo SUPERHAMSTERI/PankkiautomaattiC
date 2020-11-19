@@ -62,9 +62,6 @@ int main() {
 }
 
 
-
-
-
 /*
  * Seuraavaksi: funktioita.
 */
@@ -150,10 +147,10 @@ void session (void) {
             case 1 :
                 printf("\nPaljon haluat nostaa?" "\n");
                 scanf("%d", &withdrawalSum);
+
                 if(withdrawalSum <= userAccountBalance) {
                     banknote();
                     break;
-
                 } else {
                     printf("\nEi sinulla ole niin paljoa rahaa!\n");
                     inLoop = 1;
@@ -164,6 +161,7 @@ void session (void) {
             case  2:
                 showBalance = 1;
                 balance();
+
                 if (inLoop == 1){
                     printf("Haluatko nostaa jonkin toisen summan?\n" "1 = JOO" "\n" "0 = EI" "\n");
                 } else {
