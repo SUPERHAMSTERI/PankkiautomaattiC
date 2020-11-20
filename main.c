@@ -177,15 +177,10 @@ int banknote (){
     int withdrawalSumN;             // Käytetään laskemaan seteleitä, jos summa ei ole jaollinen 20:llä tai 50llä.
     int withdrawalSumY;             // Käytetään laskemaan seteleitä, jos summa ei ole jaollinen 20:llä tai 50llä.
 
-    if(withdrawalSum == 30 || 1000 < withdrawalSum || withdrawalSum < 20){
+    if(withdrawalSum == 30 || 1000 < withdrawalSum || withdrawalSum < 20 || withdrawalSum % 10){
         printf("Et voi nostaa %d EUR. Tarjoamme vain 20 tai 40 - 1000 EUR suuruisia nostoja." "\n", withdrawalSum);
+        printf("Voit valita summan kymmenen euron portaittain." "\n");
         printf("Valitse toinen mieluisa summa tarjoamistamme vaihtoehdoista!" "\n");
-        inLoop = 1;
-        return (0);
-    }
-
-    if(withdrawalSum % 10 != 0 && sessionOn != 0){
-        printf("Ei ole kolikoita tarjolla." "\n");
         inLoop = 1;
         return (0);
     }
