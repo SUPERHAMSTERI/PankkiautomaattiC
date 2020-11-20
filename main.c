@@ -14,8 +14,6 @@ int banknote();
 int pinOk = 0 ;                     // Tunnistamisen tila
 int userAccount = 1 ;               // Mennään näillä testaamisen helpottamiseksi
 int userAccountPin = 1 ;            // Mennään näillä testaamisen helpottamiseksi
-//int userAccount = 5454580;        // Tarkoitus on hakea tämä myöhemmässä vaiheessa jostain muualta, nyt näin
-//int userAccountPin = 2345;        // Tarkoitus on hakea tämä myöhemmässä vaiheessa jostain muualta, nyt näin
 int userAccountBalance = 2000 ;      // Tarkoitus on hakea tämä myöhemmässä vaiheessa jostain muualta, nyt näin
 int userAccountInput = 0;           // Juuri sitä
 int userAccountPinInput = 0 ;       // Muuttujan nimi kertoo kaiken, mutta kommentoidaan nyt tätäkin
@@ -181,10 +179,10 @@ void session (void) {
 
 int banknote (){
 
-    int banknote20 = 0;                 // 20€ setelien määrä
-    int banknote50 = 50;                // 50€ setelien määrä
-    int withdrawalSumN = 0;             // Käytetään laskemaan seteleitä, jos summa ei ole jaollinen 20:llä tai 50llä.
-    int withdrawalSumY = 0;             // Käytetään laskemaan seteleitä, jos summa ei ole jaollinen 20:llä tai 50llä.
+    int banknote20;                 // 20€ setelien määrä
+    int banknote50;                 // 50€ setelien määrä
+    int withdrawalSumN;             // Käytetään laskemaan seteleitä, jos summa ei ole jaollinen 20:llä tai 50llä.
+    int withdrawalSumY;             // Käytetään laskemaan seteleitä, jos summa ei ole jaollinen 20:llä tai 50llä.
 
     if(withdrawalSum == 30 || 1000 < withdrawalSum || withdrawalSum < 20){
         printf("Et voi nostaa %d EUR. Tarjoamme vain 20 tai 40 - 1000 EUR suuruisia nostoja.\n", withdrawalSum);
@@ -206,6 +204,7 @@ int banknote (){
         balance();
         sessionOn = 0;
     }
+
     if (withdrawalSum >= 20  && withdrawalSum % 50 != 0 && sessionOn != 0){
         withdrawalSumY = withdrawalSum - 50;
         banknote50 = withdrawalSumY / 50;
@@ -244,12 +243,14 @@ int banknote (){
                 inLoop = 1;
                 return (0);
             }
+
         }
     }
     return (0);
 }
 
 int balance(){
+
     if (showBalance == 0){
     printf("Haluatko tulostaa saldon?\n1 TOTTAKAI \n2 EN\n");
     scanf("%d", &showBalance);
