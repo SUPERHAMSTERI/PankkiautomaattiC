@@ -1,20 +1,17 @@
 //Vakiokirjastot
-
 #include <stdio.h>
 
 //Omat funktiot
-
 int pinInput();
 void session();
+int balance();
+int banknote();
 
 //Muuttujien esittely
-
 int pinOk = 0 ;                     // Tunnistamisen tila
 int userAccount = 1 ;               // Mennään näillä testaamisen helpottamiseksi
 int userAccountPin = 1 ;            // Mennään näillä testaamisen helpottamiseksi
-//int userAccount = 5454580;        // Tarkoitus on hakea tämä myöhemmässä vaiheessa jostain muualta, nyt näin
-//int userAccountPin = 2345;        // Tarkoitus on hakea tämä myöhemmässä vaiheessa jostain muualta, nyt näin
-int userAccountBalance = 100 ;      // Tarkoitus on hakea tämä myöhemmässä vaiheessa jostain muualta, nyt näin
+int userAccountBalance = 2000 ;      // Tarkoitus on hakea tämä myöhemmässä vaiheessa jostain muualta, nyt näin
 int userAccountInput = 0;           // Juuri sitä
 int userAccountPinInput = 0 ;       // Muuttujan nimi kertoo kaiken, mutta kommentoidaan nyt tätäkin
 int checksum = 0 ;                  // Oikean käyttäjätunnuksen ja PIN -koodin tarkiste
@@ -25,40 +22,31 @@ int inLoop = 0 ;                    // Toiminto valittu, voidaan skipata valinta
 int loopCount = 0 ;                 // Voidaan käyttää toistojen laskemiseen.
 int withdrawalSum = 0 ;             // Nostosumma
 char anyKey = 0 ;                   // Juuppismoikkis
-int chooseOK = 0 ;
+int chooseOK = 0 ;                  // Käytetään virheellisten valintojen suodattamiseen
+int showBalance = 0;                // Käsketään balanssifunktiota suosiolla näyttämään saldo ilman kyselyjä
 
 /*
  * Main funktio ja sen toiminnan esittely näissä kommenteissa. Tulossa. Ensi jaksossa.
  */
-
 
 int main() {
 
     printf("\nMoikkis!\n\n");
 
 /* Soitellaan pin koodin kyselijälle.
- * Sitten soitellaan funktiolle, joka haalii kaikki toiminnot. Tämä funktio hajoitetaan tulevissa versioissa, mutta nyt näin
+ * Sitten soitellaan funktiolle, joka haalii kaikki toiminnot.
  */
 
 
     sessionOn = pinInput();
     session();
-
-/*
- * Lopetetaan nyt tähän moikkis!
-*/
-
     sessionOn = 0;
-    printf("\n*********************************\n");
+    printf("\n\n*********************************\n");
     printf("** Moikkis seuraavaan kertaan! **\n");
     printf("*********************************\n");
     scanf("%c", &anyKey);                            //Odotetaan jotain syötettä ennen lopetusta, jotta kaikki tulosteet ovat luettavissa.
     return (0);
 }
-
-
-
-
 
 /*
  * Seuraavaksi: funktioita.
@@ -118,7 +106,7 @@ void session (void) {
      */
 
     while (sessionOn == 1 && chooseOK ==  0){
-        printf("\nMoi NIMI! Miten voimme auttaa?\n", sessionOn);
+        printf("\nMoi NIMI! Miten voimme auttaa?\n");
         printf("1 Nosto" "\n");
         printf("2 Tarkista saldo" "\n");
         printf("0 Lopeta" "\n");
@@ -145,28 +133,27 @@ void session (void) {
             case 1 :
                 printf("\nPaljon haluat nostaa?" "\n");
                 scanf("%d", &withdrawalSum);
-                if(withdrawalSum <= userAccountBalance) {
-                    printf("Kiva! Ota luukusta %d euroa!" "\n", withdrawalSum);
-                    sessionOn = 0;
-                    userAccountBalance = userAccountBalance - withdrawalSum;
-                    printf("Tilisi saldo on nyt %d euroa!" "\nLupaan, ensi kerralla kysyn haluatko saldon ruuudulle", userAccountBalance);
-                    break;
 
+                if(withdrawalSum <= userAccountBalance) {
+                    banknote();
+                    break;
                 } else {
-                    printf("\nEi sinulla ole niin paljoa rahaa!\n", withdrawalSum);
+                    printf("\nEi sinulla ole niin paljoa rahaa!\n");
                     inLoop = 1;
                     chooseAction = 2;
                     break;
                 }
 
             case  2:
-                printf("\nTilisi saldo on" "\n");
-                printf("%d" "EUR\n\n", userAccountBalance);
+                showBalance = 1;
+                balance();
+
                 if (inLoop == 1){
                     printf("Haluatko nostaa jonkin toisen summan?\n" "1 = JOO" "\n" "0 = EI" "\n");
                 } else {
                     printf("\nHaluatko nostaa rahaa?\n" "1 = JOO" "\n" "0 = EI" "\n");
                 }
+
                 scanf("%d", &chooseAction);
                 break;
 
@@ -174,4 +161,94 @@ void session (void) {
                 inLoop = 1;
         }
     }
+}
+
+/* Tämä funktio laskelee, minkäsmoista seteliä sitä syljettäisiin ulos. Näyttää kammottavalta, mutta toimii.
+ * Koska taustalla on vain lyhyt matikka, voi ajatus sisältää ajatusvirheen. Siksi tarkistetaan, että jaettavaksi
+ * menevien setelien summa vastaa pyydettyä, ennen kuin mennään mitään veloittelemaan. */
+
+int banknote (){
+
+    int banknote20;                 // 20€ setelien määrä
+    int banknote50;                 // 50€ setelien määrä
+    int withdrawalSumN;             // Käytetään laskemaan seteleitä, jos summa ei ole jaollinen 20:llä tai 50llä.
+    int withdrawalSumY;             // Käytetään laskemaan seteleitä, jos summa ei ole jaollinen 20:llä tai 50llä.
+
+    if(withdrawalSum == 30 || 1000 < withdrawalSum || withdrawalSum < 20){
+        printf("Et voi nostaa %d EUR. Tarjoamme vain 20 tai 40 - 1000 EUR suuruisia nostoja.\n", withdrawalSum);
+        printf("Valitse toinen mieluisa summa tarjoamistamme vaihtoehdoista!\n");
+        inLoop = 1;
+        return (0);
+    }
+
+    if(withdrawalSum % 10 != 0 && sessionOn != 0){
+        printf("Ei ole kolikoita tarjolla.\n");
+        inLoop = 1;
+        return (0);
+    }
+
+    if(withdrawalSum % 50 == 0 && sessionOn != 0){
+        banknote50 = withdrawalSum / 50;
+        userAccountBalance = userAccountBalance - withdrawalSum;
+        printf("Saat %d kappaletta 50 euron paperirahaa\n", banknote50);
+        balance();
+        sessionOn = 0;
+    }
+
+    if (withdrawalSum >= 20  && withdrawalSum % 50 != 0 && sessionOn != 0){
+        withdrawalSumY = withdrawalSum - 50;
+        banknote50 = withdrawalSumY / 50;
+        withdrawalSumY = banknote50 * 50;
+        withdrawalSumN = withdrawalSum - withdrawalSumY;
+        banknote20 = withdrawalSumN / 20;
+        withdrawalSumN = banknote20 * 20;
+
+        if (withdrawalSumN + withdrawalSumY == withdrawalSum){
+            userAccountBalance = userAccountBalance - withdrawalSum;
+
+            if(banknote50 >=1){
+                printf("Saat %d kappaletta 50 euron paperirahaa.\n", banknote50);
+            }
+
+            printf("Saat %d kappaletta 20 euron paperirahaa\n", banknote20);
+            balance();
+            sessionOn = 0;
+        } else{
+            withdrawalSumY = withdrawalSum - 20;
+            banknote50 = withdrawalSumY / 50;
+            withdrawalSumY = banknote50 * 50;
+            withdrawalSumN = withdrawalSum - withdrawalSumY;
+            banknote20 = withdrawalSumN / 20;
+
+            if (withdrawalSumN + withdrawalSumY == withdrawalSum) {
+                userAccountBalance = userAccountBalance - withdrawalSum;
+                printf("Saat %d kappaletta 50 euron paperirahaa.\n", banknote50);
+                printf("Saat %d kappaletta 20 euron paperirahaa\n", banknote20);
+                balance();
+                sessionOn = 0;
+                return (0);
+            } else{
+                printf("HUPSISTARALLUKKAA!\n");
+                printf("Rahojen jakamisessa sattui nyt harmillinen virhe!\n");
+                inLoop = 1;
+                return (0);
+            }
+
+        }
+    }
+    return (0);
+}
+
+int balance(){
+
+    if (showBalance == 0){
+    printf("Haluatko tulostaa saldon?\n1 TOTTAKAI \n2 EN\n");
+    scanf("%d", &showBalance);
+    }
+
+    if(showBalance == 1){
+        printf("Tilisi saldo on %d EUR.\n", userAccountBalance);
+    }
+
+    return(0);
 }
