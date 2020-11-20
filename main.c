@@ -1,16 +1,13 @@
 //Vakiokirjastot
-
 #include <stdio.h>
 
 //Omat funktiot
-
 int pinInput();
 void session();
 int balance();
 int banknote();
 
 //Muuttujien esittely
-
 int pinOk = 0 ;                     // Tunnistamisen tila
 int userAccount = 1 ;               // Mennään näillä testaamisen helpottamiseksi
 int userAccountPin = 1 ;            // Mennään näillä testaamisen helpottamiseksi
@@ -32,23 +29,17 @@ int showBalance = 0;                // Käsketään balanssifunktiota suosiolla 
  * Main funktio ja sen toiminnan esittely näissä kommenteissa. Tulossa. Ensi jaksossa.
  */
 
-
 int main() {
 
     printf("\nMoikkis!\n\n");
 
 /* Soitellaan pin koodin kyselijälle.
- * Sitten soitellaan funktiolle, joka haalii kaikki toiminnot. Tämä funktio hajoitetaan tulevissa versioissa, mutta nyt näin
+ * Sitten soitellaan funktiolle, joka haalii kaikki toiminnot.
  */
 
 
     sessionOn = pinInput();
     session();
-
-/*
- * Lopetetaan nyt tähän moikkis!
-*/
-
     sessionOn = 0;
     printf("\n\n*********************************\n");
     printf("** Moikkis seuraavaan kertaan! **\n");
@@ -56,7 +47,6 @@ int main() {
     scanf("%c", &anyKey);                            //Odotetaan jotain syötettä ennen lopetusta, jotta kaikki tulosteet ovat luettavissa.
     return (0);
 }
-
 
 /*
  * Seuraavaksi: funktioita.
