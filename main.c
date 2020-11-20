@@ -215,15 +215,51 @@ int banknote (){
     }
 
     if (withdrawalSum >= 20  && withdrawalSum % 50 != 0 && sessionOn != 0){
-        printf("Mielenkiintoista.\n");
         withdrawalSumY = withdrawalSum - 50;
         banknote50 = withdrawalSumY / 50;
         withdrawalSumY = banknote50 * 50;
         withdrawalSumN = withdrawalSum - withdrawalSumY;
         banknote20 = withdrawalSumN / 20;
+        withdrawalSumN = banknote20 * 20;
+
+        if (withdrawalSumN + withdrawalSumY == withdrawalSum){
+            userAccountBalance = userAccountBalance - withdrawalSum;
+            printf("Saat %d kappaletta 50 euron paperirahaa\n", banknote50);
+            printf("Saat %d kappaletta 20 euron paperirahaa\n", banknote20);
+            balance();
+            sessionOn = 0;
+        } else{
+            withdrawalSumY = withdrawalSum - 20;
+            banknote50 = withdrawalSumY / 50;
+            withdrawalSumY = banknote50 * 50;
+            withdrawalSumN = withdrawalSum - withdrawalSumY;
+            banknote20 = withdrawalSumN / 20;
+
+            if (withdrawalSumN + withdrawalSumY == withdrawalSum) {
+                userAccountBalance = userAccountBalance - withdrawalSum;
+                printf("Saat %d kappaletta 50 euron paperirahaa\n", banknote50);
+                printf("Saat %d kappaletta 20 euron paperirahaa\n", banknote20);
+                balance();
+                sessionOn = 0;
+                return (0);
+            } else{
+                printf("HUPSISTARALLUKKAA!\n");
+                printf("Rahojen jakamisessa sattui nyt harmillinen virhe!\n");
+                inLoop = 1;
+                return (0);
+            }
+        }
+    }
+
+    if (withdrawalSum >= 20  && withdrawalSum % 20 != 0 && sessionOn != 0){
+        withdrawalSumY = withdrawalSum - 20;
+        banknote50 = withdrawalSumY / 50;
+        withdrawalSumY = banknote50 * 50;
+        withdrawalSumN = withdrawalSum - withdrawalSumY;
+        banknote20 = withdrawalSumN / 20;
         userAccountBalance = userAccountBalance - withdrawalSum;
-        printf("Saat %d kappaletta 50 euron paperirahaa\n", banknote50);
         printf("Saat %d kappaletta 20 euron paperirahaa\n", banknote20);
+        printf("Saat %d kappaletta 50 euron paperirahaa\n", banknote50);
         balance();
         sessionOn = 0;
     }
@@ -233,7 +269,7 @@ int banknote (){
 
 int balance(){
     if (showBalance == 0){
-    printf("Haluatko tulostaa saldon?\n1 TOTTAKAI \n2 EI\n");
+    printf("Haluatko tulostaa saldon?\n1 TOTTAKAI \n2 EN\n");
     scanf("%d", &showBalance);
     }
 
