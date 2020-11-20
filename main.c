@@ -16,7 +16,7 @@ int userAccount = 1 ;               // Mennään näillä testaamisen helpottami
 int userAccountPin = 1 ;            // Mennään näillä testaamisen helpottamiseksi
 //int userAccount = 5454580;        // Tarkoitus on hakea tämä myöhemmässä vaiheessa jostain muualta, nyt näin
 //int userAccountPin = 2345;        // Tarkoitus on hakea tämä myöhemmässä vaiheessa jostain muualta, nyt näin
-int userAccountBalance = 200 ;      // Tarkoitus on hakea tämä myöhemmässä vaiheessa jostain muualta, nyt näin
+int userAccountBalance = 2000 ;      // Tarkoitus on hakea tämä myöhemmässä vaiheessa jostain muualta, nyt näin
 int userAccountInput = 0;           // Juuri sitä
 int userAccountPinInput = 0 ;       // Muuttujan nimi kertoo kaiken, mutta kommentoidaan nyt tätäkin
 int checksum = 0 ;                  // Oikean käyttäjätunnuksen ja PIN -koodin tarkiste
@@ -31,6 +31,8 @@ int chooseOK = 0 ;                  // Käytetään virheellisten valintojen suo
 int banknote20 = 0;                 // 20€ setelien määrä
 int banknote50 = 50;                // 50€ setelien määrä
 int showBalance = 0;                // Käsketään balanssifunktiota suosiolla näyttämään saldo ilman kyselyjä
+int withdrawalSumN = 0;             // Käytetään laskemaan seteleitä, jos summa ei ole jaollinen 20:llä tai 50llä.
+int withdrawalSumY = 0;             // Käytetään laskemaan seteleitä, jos summa ei ole jaollinen 20:llä tai 50llä.
 
 /*
  * Main funktio ja sen toiminnan esittely näissä kommenteissa. Tulossa. Ensi jaksossa.
@@ -177,14 +179,14 @@ void session (void) {
     }
 }
 
-/*Tämä funktio laskelee, minkäsmoista seteliä sitä syljettäisiin ulos.*/
+/*Tämä funktio laskelee, minkäsmoista seteliä sitä syljettäisiin ulos. Näyttää kammottavalta, mutta toimii.*/
 
 int banknote (){
     if(withdrawalSum < 20){
         printf("Ei noin minimaalisia summia voi nostaakkaan! Pienin mahdollinen nostosumma on 20 EUR\n");
     }
 
-    if(withdrawalSum % 20 == 0  && sessionOn != 0){
+    if(withdrawalSum == 20  && sessionOn != 0){
         banknote20 = withdrawalSum / 20;
         printf("Saat %d kappaletta 20 euron paperirahaa\n", banknote20);
         userAccountBalance = userAccountBalance - withdrawalSum;
@@ -200,14 +202,32 @@ int banknote (){
         sessionOn = 0;
     }
 
-    if(withdrawalSum % 10 != 0 && withdrawalSum > 20 && sessionOn != 0){
-        printf("Me emme ropoja jakele!\n");
+    if(withdrawalSum % 10 != 0 && sessionOn != 0){
+        printf("Ei ole kolikoita tarjolla.\n");
+        inLoop = 1;
+        return (0);
     }
 
-    if (withdrawalSum > 20 && withdrawalSum % 50 != 0 && withdrawalSum % 20 != 0 && sessionOn != 0){
+    if(withdrawalSum == 30 && sessionOn != 0 || withdrawalSum > 1000){
+        printf("Et voi nostaa %d EUR. Voit nostaa 20 tai 40 - 1000 EUR\n", withdrawalSum);
+        inLoop = 1;
+        return (0);
+    }
+
+    if (withdrawalSum >= 20  && withdrawalSum % 50 != 0 && sessionOn != 0){
         printf("Mielenkiintoista.\n");
-
+        withdrawalSumY = withdrawalSum - 50;
+        banknote50 = withdrawalSumY / 50;
+        withdrawalSumY = banknote50 * 50;
+        withdrawalSumN = withdrawalSum - withdrawalSumY;
+        banknote20 = withdrawalSumN / 20;
+        userAccountBalance = userAccountBalance - withdrawalSum;
+        printf("Saat %d kappaletta 50 euron paperirahaa\n", banknote50);
+        printf("Saat %d kappaletta 20 euron paperirahaa\n", banknote20);
+        balance();
+        sessionOn = 0;
     }
+
     return (0);
 }
 
