@@ -7,7 +7,6 @@ void session();
 int login();
 int balance();
 int banknote();
-void clear();
 
 //Muuttujien esittely
 int sessionOn = 0 ;                 // Ilmaisee onko PIN syötetty ja istunto käynnissä.
@@ -53,7 +52,7 @@ int login() {
     int loggedIn = 0 ;                  // Tunnistamisen tila
     char userAccountPin[10];            // Sieltä se kaivellaan, tilitiedoista.
     char userAccountInput[30];          // Käyttäjän syöttämä käyttäjätunnus. Hauska fakta: Nostotunnuksessa ei ole Ä- Kirjainta - siksi se on se
-    char userAccountPinInput;        // Muuttujan nimi kertoo kaiken, mutta kommentoidaan nyt tätäkin
+    char userAccountPinInput[10];        // Muuttujan nimi kertoo kaiken, mutta kommentoidaan nyt tätäkin
     int pincompare;                     // Vertailee, menikö lähellekään oikein
 
         /*
@@ -64,44 +63,44 @@ int login() {
         while (loggedIn == 0) {
 
             while (userAccountFound == 0 && loopCount <= 5) {
-            printf("Anna nostotunnuksesi:" "\n");
-            scanf("%s", userAccountInput);
+                printf("Anna nostotunnuksesi:" "\n");
+                scanf("%s", userAccountInput);
 
-            if (userAccountInput[strlen(userAccountInput)-1] == '\n') {
-                userAccountInput[strlen(userAccountInput) - 1] = '\0';
+                if (userAccountInput[strlen(userAccountInput)-1] == '\n') {
+                    userAccountInput[strlen(userAccountInput) - 1] = '\0';
+                }
+
+                strcat(userAccountInput,".acc");
+
+                if((acc = fopen(userAccountInput, "r")) !=NULL) {
+                    fgets(userAccountPin, 10, acc);
+                    userAccountFound = 1;
+                    loopCount = 0;
+
+                } else{
+                    printf("Tietojemme mukaan sinua ei ole olemassa. Kokeile luoda itsesi uudelleen." "\n");
+                    loopCount = loopCount + 1;
+                }
             }
 
-            strcat(userAccountInput,".acc");
-
-            if((acc = fopen(userAccountInput, "r")) !=NULL) {
-                userAccountFound = 1;
-                loopCount = 0;
+            while( userAccountFound == 1 && loopCount < 5){
                 printf("Anna tunnusluku:" "\n");
-                fgets(userAccountPinInput, 256, stdin);
-                fgets(userAccountPin, 10, acc);
+                scanf("%s", userAccountPinInput);
 
                 if (userAccountPin[strlen(userAccountPin) - 1] == '\n') {
                     userAccountPin[strlen(userAccountPin) - 1] = '\0';
                 }
-            } else{
-                printf("Tietojemme mukaan sinua ei ole olemassa. Kokeile luoda itsesi uudelleen." "\n");
-                loopCount = loopCount + 1;
+                pincompare = strcmp(userAccountPin, userAccountPinInput);
+                if (pincompare == 0 && userAccountFound == 1) {
+                    loggedIn = 1;
+                    fclose(acc);
+                    return(1);
+                } else{
+                    printf("\n" "Nyt ei mennyt oikein!" "\n");
+                    printf("Saat kokeilla uudelleen!" "\n" "\n");
+                    loopCount = loopCount + 1;
+                }
             }
-        }
-
-            if (loopCount >= 1 && userAccountFound == 1) {
-                printf("\n" "\n" "Nyt ei mennyt oikein!" "\n");
-                printf("Saat kokeilla uudelleen!" "\n" "\n");
-                loopCount = loopCount + 1;
-            }
-
-            pincompare = strcmp(userAccountPin, userAccountPinInput);
-            if (pincompare == 0 && userAccountFound == 1) {
-                loggedIn = 1;
-                fclose(acc);
-                return(1);
-            }
-
             /*
              * Jos oiekaa syötettä ei tule, niin luovutetaan.
              */
@@ -271,9 +270,4 @@ int balance(){
     }
 
     return(0);
-}
-
-void clear(void){
-
-    while (fgetc(stdin) != '\n');
 }
