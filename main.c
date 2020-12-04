@@ -1,36 +1,32 @@
 //Vakiokirjastot
 #include <stdio.h>
+#include <string.h>
 
 //Omat funktiot
 void session();
-int pinInput();
+int login();
 int balance();
 int banknote();
+void getAccountInfo();
 
 //Muuttujien esittely
-int pinOk = 0 ;                     // Tunnistamisen tila
-int userAccount = 1 ;               // Mennään näillä testaamisen helpottamiseksi
-int userAccountPin = 1 ;            // Mennään näillä testaamisen helpottamiseksi
-int userAccountBalance = 2000 ;      // Tarkoitus on hakea tämä myöhemmässä vaiheessa jostain muualta, nyt näin
-int userAccountInput = 0;           // Juuri sitä
-int userAccountPinInput = 0 ;       // Muuttujan nimi kertoo kaiken, mutta kommentoidaan nyt tätäkin
-int checksum = 0 ;                  // Oikean käyttäjätunnuksen ja PIN -koodin tarkiste
-int checksumInput = 0 ;             // Käyttäjän syöttämän käyttäjätunnuksen ja PIN -koodin tarkiste
 int sessionOn = 0 ;                 // Ilmaisee onko PIN syötetty ja istunto käynnissä.
 int chooseAction = 0 ;              // Toiminnon valinta
 int inLoop = 0 ;                    // Toiminto valittu, voidaan skipata valinta
 int loopCount = 0 ;                 // Voidaan käyttää toistojen laskemiseen.
+int userAccountBalance;      // Tarkoitus on hakea tämä myöhemmässä vaiheessa jostain muualta, nyt näin
 int withdrawalSum = 0 ;             // Nostosumma
 char anyKey = 0 ;                   // Juuppismoikkis
 int chooseOK = 0 ;                  // Käytetään virheellisten valintojen suodattamiseen
 int showBalance = 0;                // Käsketään balanssifunktiota suosiolla näyttämään saldo ilman kyselyjä
+char userAccountName;
 
+FILE *acc;
 /*
  * Main funktio ja sen toiminnan esittely näissä kommenteissa. Tulossa. Ensi jaksossa.
  */
 
 int main() {
-
     printf("\n" "Moikkis!" "\n" "\n");
 
 /* Soitellaan pin koodin kyselijälle.
@@ -38,7 +34,8 @@ int main() {
  */
 
 
-    sessionOn = pinInput();
+    sessionOn = login();
+
     session();
     sessionOn = 0;
     printf("\n" "\n" "*********************************" "\n");
@@ -52,8 +49,14 @@ int main() {
  * Seuraavaksi: funktioita.
 */
 
-int pinInput() {
+int login() {
 
+    int pincompare;
+    int userAccountFound;
+    int pinOk = 0 ;                     // Tunnistamisen tila
+    char userAccountPin[10];            // Mennään näillä testaamisen helpottamiseksi
+    char userAccountInput[30];           // Juuri sitä
+    char userAccountPinInput[4];       // Muuttujan nimi kertoo kaiken, mutta kommentoidaan nyt tätäkin
         /*
          * Kysytään pin koodia niin kauan että tärppää. Tai oikeastaan viisi kertaa. Luovutetaan jos ei tuppaa onnistumaan.
          * Tallennetaan Käyttäjätunnus ja PIN - Koodi omaan muuttujaan, joista lasketaan tarkiste
@@ -68,14 +71,29 @@ int pinInput() {
             }
 
             printf("Anna nostotunnuksesi:" "\n");
-            scanf("%i", &userAccountInput);
-            printf("Anna tunnusluku:" "\n");
-            scanf("%d", &userAccountPinInput);
-            checksum = userAccount + userAccountPin;
-            checksumInput = userAccountInput + userAccountPinInput;
+            fgets(userAccountInput, 256, stdin);
 
-            if (checksumInput == checksum) {
+            if (userAccountInput[strlen(userAccountInput)-1] == '\n')
+                userAccountInput[strlen(userAccountInput)-1] = '\0';
+            strcat(userAccountInput,".acc");
+
+            if((acc = fopen(userAccountInput, "r")) !=NULL) {
+                userAccountFound = 1;
+                printf("Anna tunnusluku:" "\n");
+                scanf("%s", &userAccountPinInput);
+                fgets(userAccountPin, 10, acc);
+
+                if (userAccountPin[strlen(userAccountPin) - 1] == '\n')
+                    userAccountPin[strlen(userAccountPin) - 1] = '\0';
+
+            }else{
+                printf("Tietojemme mukaan sinua ei ole olemassa. Kokeile luoda itsesi uudelleen.");
+            }
+
+            pincompare = strcmp(userAccountPin, userAccountPinInput);
+            if (pincompare == 0 && userAccountFound == 1) {
                 pinOk = 1;
+                fclose(acc);
                 return(1);
             }
 
@@ -106,6 +124,7 @@ void session (void) {
      */
 
     while (sessionOn == 1 && chooseOK ==  0){
+        getAccountInfo();
         printf("\n" "Moi NIMI! Miten voimme auttaa?" "\n");
         printf("1 Nosto" "\n");
         printf("2 Tarkista saldo" "\n");
@@ -251,4 +270,10 @@ int balance(){
     }
 
     return(0);
+}
+
+void getAccountInfo(void){
+    fgets(userAccountBalance, 10, acc);
+    fgets(userAccountPin, 10, acc);
+
 }
