@@ -52,7 +52,7 @@ int login() {
     int loggedIn = 0 ;                  // Tunnistamisen tila
     char userAccountPin[10];            // Sieltä se kaivellaan, tilitiedoista.
     char userAccountInput[30];          // Käyttäjän syöttämä käyttäjätunnus. Hauska fakta: Nostotunnuksessa ei ole Ä- Kirjainta - siksi se on se
-    char userAccountPinInput[10];        // Muuttujan nimi kertoo kaiken, mutta kommentoidaan nyt tätäkin
+    char userAccountPinInput[10];       // Muuttujan nimi kertoo kaiken, mutta kommentoidaan nyt tätäkin
     int pincompare;                     // Vertailee, menikö lähellekään oikein
 
         /*
@@ -76,11 +76,11 @@ int login() {
                     fgets(userAccountPin, 10, acc);
                     userAccountFound = 1;
                     loopCount = 0;
-
                 } else{
                     printf("Tietojemme mukaan sinua ei ole olemassa. Kokeile luoda itsesi uudelleen." "\n");
                     loopCount = loopCount + 1;
                 }
+
             }
 
             while( userAccountFound == 1 && loopCount < 5){
@@ -90,17 +90,21 @@ int login() {
                 if (userAccountPin[strlen(userAccountPin) - 1] == '\n') {
                     userAccountPin[strlen(userAccountPin) - 1] = '\0';
                 }
+
                 pincompare = strcmp(userAccountPin, userAccountPinInput);
+
                 if (pincompare == 0 && userAccountFound == 1) {
                     loggedIn = 1;
                     fclose(acc);
                     return(1);
-                } else{
+                }else{
                     printf("\n" "Nyt ei mennyt oikein!" "\n");
                     printf("Saat kokeilla uudelleen!" "\n" "\n");
                     loopCount = loopCount + 1;
                 }
+
             }
+
             /*
              * Jos oiekaa syötettä ei tule, niin luovutetaan.
              */
@@ -114,9 +118,6 @@ int login() {
             }
 
         }
-
-    return (0);
-
 }
 
 void session (void) {
