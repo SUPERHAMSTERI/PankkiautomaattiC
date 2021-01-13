@@ -13,7 +13,7 @@ int sessionOn = 0 ;                 // Ilmaisee onko PIN syötetty ja istunto k�
 int chooseAction = 0 ;              // Toiminnon valinta
 int inLoop = 0 ;                    // Toiminto valittu, voidaan skipata valinta
 int loopCount = 0 ;                 // Voidaan käyttää toistojen laskemiseen.
-int userAccountBalance = 500;      // Tarkoitus on hakea tämä myöhemmässä vaiheessa jostain muualta, nyt näin
+int userAccountBalance = 500;       // Tarkoitus on hakea tämä myöhemmässä vaiheessa jostain muualta, nyt näin
 int withdrawalSum = 0 ;             // Nostosumma
 char anyKey = 0 ;                   // Paina Any Key -näppäintä jatkaaksesi
 int chooseOK = 0 ;                  // Käytetään virheellisten valintojen suodattamiseen
@@ -48,7 +48,7 @@ int main() {
 
 int login() {
 
-    int userAccountFound = 0;               // Aina käyttäjää ei ole edes olemassa
+    int userAccountFound = 0;           // Aina käyttäjää ei ole edes olemassa
     int loggedIn = 0 ;                  // Tunnistamisen tila
     char userAccountPin[10];            // Sieltä se kaivellaan, tilitiedoista.
     char userAccountInput[30];          // Käyttäjän syöttämä käyttäjätunnus. Hauska fakta: Nostotunnuksessa ei ole Ä- Kirjainta - siksi se on se
