@@ -10,3 +10,16 @@ Tämä tehtävä on iänkaikkisesti ollut C -kurssilla harjoitustyönä ja näin
 Mikään malliesimerkki tämä ei ole, mutta yksi ratkaisu kuitenkin.
 
 Lisää infoa tarjoaa LUEMINUT.txt
+
+
+
+
+Pari esimerkkiä ongelmista, joita ei ole edes yritetty ratkaista;
+
+joissain kohdissa väärällä syötteellä jää jumiin eikä pääse jatkamaan.
+
+Syötteitä ei muutenkaan paljon tarkistella.
+
+Turhia muuttujia on.
+
+Saldoa ei tallenneta.
