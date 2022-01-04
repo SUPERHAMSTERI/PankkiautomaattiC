@@ -9,9 +9,7 @@ Tämä tehtävä on iänkaikkisesti ollut C -kurssilla harjoitustyönä ja näin
 
 Mikään malliesimerkki tämä ei ole, mutta yksi ratkaisu kuitenkin.
 
-Lisää infoa tarjoaa LUEMINUT.txt
-
-
+Githubista löytyy paljon malliratkaisuja tähän tehtävään ja ne auttoivat minua paljon tässä työssä. Siksi lisään omanikin tänne.
 
 
 Pari esimerkkiä ongelmista, joita ei ole edes yritetty ratkaista;
@@ -23,3 +21,7 @@ Syötteitä ei muutenkaan paljon tarkistella.
 Turhia muuttujia on.
 
 Saldoa ei tallenneta.
+
+
+Pakolliset huomautukset:
+**ÄLÄ KOPIOI MITÄÄN SUORAAN! Siitä jää kiinni ja soo soo heiluu. Mitään et opi, etkä ymmärrä miten koodi toimii. Muuten koodia saa käyttää ja siitä inspiroitua vapaasti.**
