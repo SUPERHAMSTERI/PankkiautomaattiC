@@ -14,15 +14,15 @@ Githubista löytyy paljon malliratkaisuja tähän tehtävään ja ne auttoivat m
 
 **Pari esimerkkiä ongelmista, joita ei ole edes yritetty ratkaista:**
 
-Joissain kohdissa väärällä syötteellä jää jumiin eikä pääse jatkamaan.
+- Joissain kohdissa väärällä syötteellä jää jumiin eikä pääse jatkamaan.
 
-Syötteitä ei muutenkaan paljon vaivauduta tarkistelemaan.
+- Syötteitä ei muutenkaan paljon vaivauduta tarkistelemaan.
 
-Turhia muuttujia on.
+- Turhia muuttujia on.
 
 
 
-Pakolliset huomautukset:
+***Pakolliset huomautukset:***
 
 **ÄLÄ KOPIOI MITÄÄN SUORAAN! Siitä jää kiinni ja soo soo heiluu. Mitään et opi, etkä ymmärrä miten koodi toimii. Muuten koodia saa käyttää ja siitä inspiroitua vapaasti.**
 
