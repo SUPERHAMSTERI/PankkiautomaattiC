@@ -12,16 +12,18 @@ Mikään malliesimerkki tämä ei ole, mutta yksi ratkaisu kuitenkin.
 Githubista löytyy paljon malliratkaisuja tähän tehtävään ja ne auttoivat minua paljon tässä työssä. Siksi lisään omanikin tänne.
 
 
-Pari esimerkkiä ongelmista, joita ei ole edes yritetty ratkaista;
+**Pari esimerkkiä ongelmista, joita ei ole edes yritetty ratkaista:**
 
-joissain kohdissa väärällä syötteellä jää jumiin eikä pääse jatkamaan.
+Joissain kohdissa väärällä syötteellä jää jumiin eikä pääse jatkamaan.
 
-Syötteitä ei muutenkaan paljon tarkistella.
+Syötteitä ei muutenkaan paljon vaivauduta tarkistelemaan.
 
 Turhia muuttujia on.
 
-Saldoa ei tallenneta.
 
 
 Pakolliset huomautukset:
+
 **ÄLÄ KOPIOI MITÄÄN SUORAAN! Siitä jää kiinni ja soo soo heiluu. Mitään et opi, etkä ymmärrä miten koodi toimii. Muuten koodia saa käyttää ja siitä inspiroitua vapaasti.**
+
+Suhtaudu tähän myös sisäistäen, että tämä on ensimmäinen ohjelmointitöni *koskaan.*
